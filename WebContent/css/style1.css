@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+html,body{
+	width  : 100%;
+	height : 100%;
+	font-size : 18px;
+}
+
+.navbar{
+	background-color: pink!important;
+}
+.navbar{
+	color : white !important;
+}
+.navbar{
+	color : black !important;
+}
+.welcome hr {
+	border-top: 2px solid rgb(62,44,100);
+	width: 95%;
+	margin-bottom: 2 rem;
+}

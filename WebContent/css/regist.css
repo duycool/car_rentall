@@ -1,0 +1,16 @@
+body{
+    background-image: url("C:\Users\Laptop88\git\Carrental\car_rentall\WebContent\images\1.jpg");
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    color: aliceblue;
+    }
+    .login{
+        margin: 0 auto;
+    padding: 100px;
+    background:#222121c2;
+    margin-top: 50px;
+    box-shadow:  0px 1px 17px 3px#4267b2;
+    }

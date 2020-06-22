@@ -1,0 +1,16 @@
+body{
+    background-image: url("https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.15752-9/75210172_676083636214689_6667288607885099008_n.png?_nc_cat=103&_nc_eui2=AeFyW2G5Ztoeo28Imk8OBQ3Sw1nSOgOfPb4L9ek_efkOmpfofA3J2ZBZaW5FGC38L0wn4a8aaup77ctn1WdB6Omo9AftbU1jdtiqYp4HcezTIA&_nc_oc=AQlnkONVIRfEzSOIgnrxXSiv7nB7lYA-_wGNKXLhTvjLPDGtyALZTKhOaq3WltGDd7g&_nc_ht=scontent.fsgn2-2.fna&oh=af313e72b45744459768c21fd9ac3185&oe=5E3E8FFC");
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    color: aliceblue;
+    }
+    .login{
+        margin: 0 auto;
+    padding: 100px;
+    background:#222121c2;
+    margin-top: 50px;
+    box-shadow:  0px 1px 17px 3px#4267b2;
+    }

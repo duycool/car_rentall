@@ -1,0 +1,180 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<head>
+<title>Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  />
+<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- bootstrap-css -->
+<link rel="stylesheet" href="csss/bootstrap.min.css" >
+<!-- //bootstrap-css -->
+<!-- Custom CSS -->
+<link href="csss/stylee.css" rel='stylesheet' type='text/css' />
+<link href="csss/style-responsive.css" rel="stylesheet"/>
+<!-- font CSS -->
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- font-awesome icons -->
+<link rel="stylesheet" href="csss/font.css" type="text/css"/>
+<link href="csss/font-awesome.css" rel="stylesheet"> 
+<link rel="stylesheet" href="csss/morris.css" type="text/css"/>
+<!-- calendar -->
+<link rel="stylesheet" href="csss/monthly.css">
+
+<!-- //calendar -->
+<!-- //font-awesome icons -->
+
+
+<script src="jsss/jquery2.0.3.min.js"></script>
+<script src="jsss/raphael-min.js"></script>
+<script src="jsss/morris.js"></script>
+
+
+</head>
+<body>
+<section id="container">
+<!--header start-->
+<header class="header fixed-top clearfix">
+<!--logo start-->
+<div class="brand">
+    <a href="${pageContext.request.contextPath}/homeadmin" class="logo">
+      	MANAGER
+    </a>
+    <div class="sidebar-toggle-box">
+        <div class="fa fa-bars"></div>
+    </div>
+</div>
+<div class="top-nav clearfix">
+    <!--search & user info start-->
+    <ul class="nav pull-right top-menu">
+        <li>
+            <input type="text" class="form-control search" placeholder=" Search">
+        </li>
+        <!-- user login dropdown start-->
+        <li class="dropdown">
+           	 <a data-toggle="dropdown" class="dropdown-toggle" href="${pageContext.request.contextPath}/logout">
+                <img alt="" src="imagess/ok.jpg">
+               <a href="${pageContext.request.contextPath}/logout"><span class="username">Đăng Xuất</span></a>    
+            </a>      
+        </li>     
+       <!-- user login dropdown end -->
+       
+    </ul>
+    <!--search & user info end-->
+</div>
+</header>
+
+<aside>
+
+
+<div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <div class="leftside-navigation">
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a class="active" href="${pageContext.request.contextPath}/homeadmin">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+               
+                <li class="sub-menu">
+                    <a >
+                        <i class="fa fa-book"></i>
+                        <span>QUẢN LÝ KHÁCH HÀNG</span>
+                    </a>
+                    <ul class="sub">                    
+                          <li><a href="${pageContext.request.contextPath}/listCustumer">KHÁCH HÀNG</a></li>                                             
+                    </ul>
+                </li>
+                     <li class="sub-menu">
+                    <a class="active" href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>QUẢN LÝ XE</span>
+                    </a>
+                    <ul class="sub">                      
+                       		 <li><a href="${pageContext.request.contextPath}/createcar">THÊM XE</a></li>
+                    		<li><a href="${pageContext.request.contextPath}/listCaradmin">QUẢN LÝ XE</a></li>         	
+                    </ul>
+                </li>   
+                 <li class="sub-menu">
+                    <a class="active" href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>QUẢN LÝ LOẠI</span>
+                    </a>
+                    <ul class="sub">
+                      		<li><a href="${pageContext.request.contextPath}/createspecies">Thêm Loại</a></li>                       
+                    		<li><a href="${pageContext.request.contextPath}/listspecies">Tất Cả Lọai</a></li>     		
+                    </ul>
+                </li> 
+                      <li class="sub-menu">
+                    <a class="active" href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>QUẢN LÝ HÃNG</span>
+                    </a>
+                    <ul class="sub">           
+                       		<li><a href="${pageContext.request.contextPath}/createManufact">Thêm Hãng</a></li>
+                    		<li><a href="${pageContext.request.contextPath}/listmanufact">Tất Cả Hãng</a></li>      		
+                    </ul>
+                </li> 
+                 <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý hợp đồng Theo ngày</span>
+                    </a>
+                    <ul class="sub">
+                         <li><a href="${pageContext.request.contextPath}/listcontract">Hợp Đồng Thuê Theo Ngày</a></li>
+                        <li><a href="${pageContext.request.contextPath}/findcontract?status=Waiting">Hợp Đồng Đang chờ</a></li>
+                        <li><a href="${pageContext.request.contextPath}/findcontract?status=Browser">Hợp Đồng Đã Duyệt</a></li>
+                         <li><a href="${pageContext.request.contextPath}/findcontract?status=Delivering">Hợp Đồng Đang giao</a></li>                         
+                         <li><a href="${pageContext.request.contextPath}/findcontract?status=Currently">Hợp Đồng Đang Thuê</a></li>
+                        <li><a href="${pageContext.request.contextPath}/findcontract?status=AlreadyPaid">Hợp Đồng Đã trã</a></li>
+                    </ul>
+                </li> 
+                  <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý hợp đồng Thuê theo giờ</span>
+                    </a>
+                    <ul class="sub">
+                           <li><a href="${pageContext.request.contextPath}/listcontracthour">Hợp Đồng Thuê Theo Giờ</a></li>
+                    </ul>
+                </li>              
+                  <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Doanh thu</span>
+                    </a>
+                    <ul class="sub">
+                         <li><a href="${pageContext.request.contextPath}/sumtotal?status=CurrentlyHiring">Thu nhập ước tính</a></li>
+                        <li><a href="${pageContext.request.contextPath}/sumtotal?status=AlreadyPaid">Thu nhập đạt được</a></li>            
+                    </ul>
+                </li>    
+                  <li>                   
+                    <a href="${pageContext.request.contextPath}/contractexpires">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>Hợp đồng quá hạn</span>
+                    </a>
+                </li> 
+                   <li>                   
+                    <a href="${pageContext.request.contextPath}/viewpromotion">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>Danh sách Thêm giảm giá</span>
+                    </a>
+                </li>      
+            </ul>      
+           </div>
+    </div>
+</aside>
+</section>
+<script src="jss/bootstrap.js"></script>
+<script src="jss/jquery.dcjqaccordion.2.7.js"></script>
+<script src="jss/scripts.js"></script>
+<script src="jss/jquery.slimscroll.js"></script>
+<script src="jss/jquery.nicescroll.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
+<script src="jss/jquery.scrollTo.js"></script>
+</body>
+</html>

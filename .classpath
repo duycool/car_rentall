@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_211">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/apache-tomcat-8.5.43.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/mysql-connector-java-8.0.15 (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/sqljdbc41-6.0.8112.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/javax.mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/jsp-api-2.1.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/servlet-api.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/ojdbc14-10.2.0.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/javamail-1_2.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/jaf-1_0_2-upd2.zip"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/mailsender-api-1.7.0-rc1.jar.zip"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5"/>
+	<classpathentry kind="lib" path="C:/Users/Laptop88/Downloads/jbcrypt-0.4.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
