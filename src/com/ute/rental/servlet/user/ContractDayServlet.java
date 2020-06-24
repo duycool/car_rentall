@@ -1,6 +1,7 @@
 package com.ute.rental.servlet.user;
 
 import java.io.IOException;
+import java.nio.channels.SeekableByteChannel;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -202,114 +203,134 @@ public class ContractDayServlet extends HttpServlet {
 		int id_car = (int) session.getAttribute("id_car");
 		String email = (String) session.getAttribute("email");
 		String address = request.getParameter("address");
+		//String address = (String) session.getAttribute("address");
 		String from = request.getParameter("from");
 		String to = request.getParameter("to");
 		int totalday =Integer.parseInt(request.getParameter("days"));
 		int toltalmoney =Integer.parseInt(request.getParameter("total"));
 		int prepay = Integer.parseInt(request.getParameter("prepay"));
-		
-			
-		try {
-		Date date = MethodDAO.StringToDate(from);		
-		Date date1 = MethodDAO.StringToDate(to);
-		
-		
-		String hireday = new SimpleDateFormat("yyyy/MM/dd").format(date);
-		String payday = new SimpleDateFormat("yyyy/MM/dd").format(date1);
-		if(MethodDAO.checkday(hireday)) {
+		if(toltalmoney <=  0) {			
 			response.setContentType("text/html;charset=UTF-8");
-			request.setCharacterEncoding("UTF-8");	
-			//int id_car = Integer.parseInt(request.getParameter("id_car"));
-			String mess = "Ngày thuê không đúng vui lòng nhập lại";
-			request.setAttribute("mess", mess);
-			CarDAO cardao = new CarDAO();
-			PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
-			PromotionDAO proDao = new PromotionDAO();				
-			ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
-			MethodDAO methodDAO = new MethodDAO();
-			for(PromotionDetails details : lisPromotionDetails) {
-				if(details.getId_car() == id_car) {
-					Promotion promotion = proDao.getPromotion(details.getIdpromotion());
-					Car car = cardao.getCar(id_car);
-					request.setAttribute("car",car);
-					int price = car.getPrice();				
-					String title = promotion.getTitile();
-					int priceSaleOff = methodDAO.moneySaleOff(title, price);			
-					request.setAttribute("priceSaleOff", priceSaleOff);			
-					
-					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contractday.jsp");
-					dispatcher.forward(request, response);
-					break;
+			request.setCharacterEncoding("UTF-8");			
+				CarDAO cardao = new CarDAO();
+				PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
+				PromotionDAO proDao = new PromotionDAO();				
+				ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
+				MethodDAO methodDAO = new MethodDAO();
+				for(PromotionDetails details : lisPromotionDetails) {
+					if(details.getId_car() == id_car) {
+						Promotion promotion = proDao.getPromotion(details.getIdpromotion());
+						Car car = cardao.getCar(id_car);
+						request.setAttribute("car",car);
+						int pricehour = car.getPricehour();				
+						String title = promotion.getTitile();
+						int priceSaleOff = methodDAO.moneySaleOff(title, pricehour);			
+						request.setAttribute("priceSaleOff", priceSaleOff);			
+						
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
+						dispatcher.forward(request, response);
+						return;
+					}
 				}
-			}
-			Car car = cardao.getCar(id_car);
-			request.setAttribute("car",car);
-			int pricept = car.getPrice();
-			request.setAttribute("pricept", pricept);		
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contractday.jsp");
-			dispatcher.forward(request, response);
-		}else {
-			
-			String nameSpeciesContract = "ContractDAY";
-			Contractday contractday = new Contractday();
-			contractday.setCustumerid(custumerid);
-			contractday.setId_car(id_car);
-			contractday.setEmail(email);
-			contractday.setAdressDelivery(address);
-			contractday.setQuantity(1);
-			contractday.setDeposit(prepay);
-			contractday.setStatus(status);			
-			contractday.setDayhire(hireday + " " + MethodDAO.TimeHientai());
-			contractday.setPayday(payday + " " + MethodDAO.TimeHientai());
-			contractday.setTotalday(totalday);
-			contractday.setTotalMoney(toltalmoney);
-			contractday.setNameSpecies(nameSpeciesContract);
-			
-			String result = "Đăng Ký Thành Công";
-			request.setAttribute("result", result);
-			ContractDayDAO contractDayDAO = new ContractDayDAO();
-					
-			
-			contractDayDAO.AddContractDay(contractday);
-				
-			RequestDispatcher dispatcher =
-							this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/ResultSuccess.jsp");
-			dispatcher.forward(request, response);	
-		}
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");	
-		//int id_car = Integer.parseInt(request.getParameter("id_car"));
-		String mess = "Ngày thuê không đúng vui lòng nhập lại";
-		request.setAttribute("mess", mess);
-		CarDAO cardao = new CarDAO();
-		PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
-		PromotionDAO proDao = new PromotionDAO();				
-		ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
-		MethodDAO methodDAO = new MethodDAO();
-		for(PromotionDetails details : lisPromotionDetails) {
-			if(details.getId_car() == id_car) {
-				Promotion promotion = proDao.getPromotion(details.getIdpromotion());
 				Car car = cardao.getCar(id_car);
 				request.setAttribute("car",car);
-				int price = car.getPrice();				
-				String title = promotion.getTitile();
-				int priceSaleOff = methodDAO.moneySaleOff(title, price);			
-				request.setAttribute("priceSaleOff", priceSaleOff);			
-				
-				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contractday.jsp");
-				dispatcher.forward(request, response);
-				break;
+				int pricehour = car.getPricehour();
+				request.setAttribute("pricehour", pricehour);		
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
+				dispatcher.forward(request, response);	
+					
+		}else {					
+		try {
+				Date date = MethodDAO.StringToDate(from);		
+				Date date1 = MethodDAO.StringToDate(to);				
+				String hireday = new SimpleDateFormat("yyyy/MM/dd").format(date);
+				String payday = new SimpleDateFormat("yyyy/MM/dd").format(date1);
+				if(MethodDAO.checkday(hireday)) {
+					response.setContentType("text/html;charset=UTF-8");
+					request.setCharacterEncoding("UTF-8");	
+					//int id_car = Integer.parseInt(request.getParameter("id_car"));
+					String mess = "Ngày thuê không đúng vui lòng nhập lại";
+					request.setAttribute("mess", mess);
+					CarDAO cardao = new CarDAO();
+					PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
+					PromotionDAO proDao = new PromotionDAO();				
+					ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
+					MethodDAO methodDAO = new MethodDAO();
+					for(PromotionDetails details : lisPromotionDetails) {
+						if(details.getId_car() == id_car) {
+							Promotion promotion = proDao.getPromotion(details.getIdpromotion());
+							Car car = cardao.getCar(id_car);
+							request.setAttribute("car",car);
+							int price = car.getPrice();				
+							String title = promotion.getTitile();
+							int priceSaleOff = methodDAO.moneySaleOff(title, price);			
+							request.setAttribute("priceSaleOff", priceSaleOff);			
+							
+							RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contractday.jsp");
+							dispatcher.forward(request, response);
+							break;
+						}
+					}
+					Car car = cardao.getCar(id_car);
+					request.setAttribute("car",car);
+					int pricept = car.getPrice();
+					request.setAttribute("pricept", pricept);		
+					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contractday.jsp");
+					dispatcher.forward(request, response);
+				}else {
+					if(address.equals("ofyou")) {
+						String addressOfyou = (String) session.getAttribute("address");
+						String nameSpeciesContract = "ContractDAY";
+						Contractday contractday = new Contractday();
+						contractday.setCustumerid(custumerid);
+						contractday.setId_car(id_car);
+						contractday.setEmail(email);
+						contractday.setAdressDelivery(addressOfyou);
+						contractday.setQuantity(1);
+						contractday.setDeposit(prepay);
+						contractday.setStatus(status);			
+						contractday.setDayhire(hireday + " " + MethodDAO.TimeHientai());
+						contractday.setPayday(payday + " " + MethodDAO.TimeHientai());
+						contractday.setTotalday(totalday);
+						contractday.setTotalMoney(toltalmoney);
+						contractday.setNameSpecies(nameSpeciesContract);
+						
+						String result = "Đăng Ký Thành Công";
+						request.setAttribute("result", result);
+						ContractDayDAO contractDayDAO = new ContractDayDAO();
+								
+						
+						contractDayDAO.AddContractDay(contractday);
+							
+						RequestDispatcher dispatcher =
+										this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/ResultSuccess.jsp");
+						dispatcher.forward(request, response);	
+					}else {
+						String nameSpeciesContract = "ContractDAY";
+						Contractday contractday = new Contractday();
+						contractday.setCustumerid(custumerid);
+						contractday.setId_car(id_car);
+						contractday.setEmail(email);
+						//contractday.setAdressDelivery(address);
+						contractday.setQuantity(1);
+						contractday.setDeposit(prepay);
+						contractday.setStatus(status);			
+						contractday.setDayhire(hireday + " " + MethodDAO.TimeHientai());
+						contractday.setPayday(payday + " " + MethodDAO.TimeHientai());
+						contractday.setTotalday(totalday);
+						contractday.setTotalMoney(toltalmoney);
+						contractday.setNameSpecies(nameSpeciesContract);
+						
+						session.setAttribute("contractday", contractday);
+						RequestDispatcher dispatcher =
+								this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/OtherContractDay.jsp");
+						dispatcher.forward(request, response);	
+					}
+					
+				}				
+			}catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
-		Car car = cardao.getCar(id_car);
-		request.setAttribute("car",car);
-		int pricept = car.getPrice();
-		request.setAttribute("pricept", pricept);		
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contractday.jsp");
-			dispatcher.forward(request, response);
-	}catch (Exception e) {
-		e.printStackTrace();
-	}
-
-	}
+		}		
 	}

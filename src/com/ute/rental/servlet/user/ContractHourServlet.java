@@ -231,25 +231,48 @@ public class ContractHourServlet extends HttpServlet {
 			}else {
 				int totalmoney  = MethodDAO.totalMoneyHour(totalhour, totalminute, price);
 				if(totalmoney > 0) {
-					String nameSpeciesContract = "ContractHOUR";
-					ContractHour contractHour = new ContractHour();
-					contractHour.setCustumerid(custumerid);
-					contractHour.setId_car(id_car);
-					contractHour.setEmail(email);
-					contractHour.setAdressDelivery(address);
-					contractHour.setQuantity(1);
-					contractHour.setStatus(status);
-					contractHour.setDayhire(hireday);
-					contractHour.setTimehire(hireday + " "+hourhire +":" +minutehire);
-					contractHour.setPaytime(hireday + " "+payhour+ ":" +minutepay);
-					contractHour.setTotaltime(hireday +" "+totalhourStr + ":" + totalMinuteStr);
-					contractHour.setNameSpecies(nameSpeciesContract);
-					contractHour.setTotalMoney(totalmoney);
-					request.setAttribute("contractHour", contractHour);
-					session = request.getSession();
-					session.setAttribute("contractHour",contractHour);
-					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthourResult.jsp");
-					dispatcher.forward(request, response);									
+					if(address.equals("ofyou")) {
+						String addressOfyou = (String) session.getAttribute("address");
+						String nameSpeciesContract = "ContractHOUR";
+						ContractHour contractHour = new ContractHour();
+						contractHour.setCustumerid(custumerid);
+						contractHour.setId_car(id_car);
+						contractHour.setEmail(email);
+						contractHour.setAdressDelivery(addressOfyou);
+						contractHour.setQuantity(1);
+						contractHour.setStatus(status);
+						contractHour.setDayhire(hireday);
+						contractHour.setTimehire(hireday + " "+hourhire +":" +minutehire);
+						contractHour.setPaytime(hireday + " "+payhour+ ":" +minutepay);
+						contractHour.setTotaltime(hireday +" "+totalhourStr + ":" + totalMinuteStr);
+						contractHour.setNameSpecies(nameSpeciesContract);
+						contractHour.setTotalMoney(totalmoney);
+						request.setAttribute("contractHour", contractHour);
+						session = request.getSession();
+						session.setAttribute("contractHour",contractHour);
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthourResult.jsp");
+						dispatcher.forward(request, response);	
+					}else {																	
+						String nameSpeciesContract = "ContractHOUR";
+						ContractHour contractHour = new ContractHour();
+						contractHour.setCustumerid(custumerid);
+						contractHour.setId_car(id_car);
+						contractHour.setEmail(email);
+						//contractHour.setAdressDelivery(addressOfyou);
+						contractHour.setQuantity(1);
+						contractHour.setStatus(status);
+						contractHour.setDayhire(hireday);
+						contractHour.setTimehire(hireday + " "+hourhire +":" +minutehire);
+						contractHour.setPaytime(hireday + " "+payhour+ ":" +minutepay);
+						contractHour.setTotaltime(hireday +" "+totalhourStr + ":" + totalMinuteStr);
+						contractHour.setNameSpecies(nameSpeciesContract);
+						contractHour.setTotalMoney(totalmoney);
+						request.setAttribute("contractHour", contractHour);
+						session = request.getSession();
+						session.setAttribute("contractHour",contractHour);
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/OtherContractHour.jsp");
+						dispatcher.forward(request, response);	
+					}
 				}else {
 					String message = "Giờ Thuê Giờ Trả Không Đúng";
 					request.setAttribute("mess", message);
@@ -281,34 +304,6 @@ public class ContractHourServlet extends HttpServlet {
 					dispatcher.forward(request, response);	
 				}			
 			}
-			String message = "Ngày Thuê Không đúng vui lòng nhập lại";
-			request.setAttribute("mess", message);
-			CarDAO cardao = new CarDAO();
-			PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
-			PromotionDAO proDao = new PromotionDAO();				
-			ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
-			MethodDAO methodDAO = new MethodDAO();
-			for(PromotionDetails details : lisPromotionDetails) {
-				if(details.getId_car() == id_car) {
-					Promotion promotion = proDao.getPromotion(details.getIdpromotion());
-					Car car = cardao.getCar(id_car);
-					request.setAttribute("car",car);
-					int pricehour = car.getPricehour();				
-					String title = promotion.getTitile();
-					int priceSaleOff = methodDAO.moneySaleOff(title, pricehour);			
-					request.setAttribute("priceSaleOff", priceSaleOff);			
-					
-					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
-					dispatcher.forward(request, response);
-					return;
-				}
-			}
-			Car car = cardao.getCar(id_car);
-			request.setAttribute("car",car);
-			int pricehour = car.getPricehour();
-			request.setAttribute("pricehour", pricehour);		
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
-			dispatcher.forward(request, response);
 	}catch (Exception e) {
 		e.printStackTrace();
 	}

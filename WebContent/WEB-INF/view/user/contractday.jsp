@@ -83,60 +83,64 @@
                 <form action="${pageContext.request.contextPath}/contractDay" method="post">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="text-center" style="margin-left: 110px;">ContractRental</h3>
+                            <h3 class="text-center" style="margin-left: 110px;">HợpĐồngThuêTheoNgày</h3>
                          </div>
                          <div class="col-md-6">
                              <span class="glyphicon glyphicon-pencil"></span>
                          </div>
                         <hr>                       
                         <input type="hidden" name="acmount" value="1">
-                        <img src="images/${car.avatar}" width="350px" hight="200px" alt="" name="uploadFile" style="margin-left: 50px;">
-                          <div class="row">
-                            <label class="label col-md-2 control-label">Address:</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" name="address" placeholder="địa chỉ giao xe">
-                            </div>
-                        </div>								             
+                        <img src="images/${car.avatar}" width="350px" hight="200px" alt="" name="uploadFile" style="margin-left: 50px;">                 						             
                          <div class="row">
-                            <label class="label col-md-2 control-label" for="from">To:</label>
+                            <label class="label col-md-2 control-label" for="from">TừNgày:</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control"  id="from" name="from" placeholder="Từ Ngày">
                             </div>
                         </div>
                          <div class="row">
-                            <label class="label col-md-2 control-label">From:</label>
+                            <label class="label col-md-2 control-label">ĐếnNgày:</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="to" name="to" placeholder="Đến Ngày">
                             </div>
                         </div>
                            <div class="row">
-                            <label class="label col-md-2 control-label">Price:</label>
+                            <label class="label col-md-2 control-label">Giá:</label>
                             <div class="col-md-10">
                                 <input type="text" class="form-control" id="price" name="price" value="<%= request.getAttribute("priceSaleOff") != null ? request.getAttribute("priceSaleOff") : " " %> <%= request.getAttribute("pricept") != null ? request.getAttribute("pricept") : " " %>" readonly="readonly"  style="color: black; font-size: 18px; margin-left:40px">
                             </div>
                         </div>
                          <div class="row">
-                            <label class="label col-md-2 control-label">Daytotal:</label>
+                            <label class="label col-md-2 control-label">TổngNgày:</label>
                             <div class="col-md-10">
                                 <input type="number" class="form-control" id="days" name="days" readonly="readonly"  style="color: black; font-size: 15px; margin-left: 40px;">
                             </div>
                         </div>
                          <div class="row">
-                            <label class="label col-md-2 control-label" for="total" >TotalMoneys:</label>
+                            <label class="label col-md-2 control-label" for="total" >TổngTiền:</label>
                             <div class="col-md-10">
                                 <input type="number" class="form-control" id="total" name="total" readonly="readonly" style="color: black; font-size: 10px; margin-left: 55px;" >
                             </div>
                         </div>
                         <div class="row">
-                            <label class="label col-md-2 control-label"  >Prepay:</label>
+                            <label class="label col-md-2 control-label"  >TrảTrước:</label>
                             <div class="col-md-10">
                                 <input type="number" class="form-control"  name="prepay" placeholder="Trả trước VNĐ">
                             </div>
-                        </div>
+                        </div>      
+                        <div class="row">
+                            <label class="label col-md-2 control-label"  >ĐịaChỉ:</label>
+                            <div class="col-md-10">
+                                <select  class="form-control"  name="address" >
+                                	<option value="ofyou">Địa Chỉ Của Bạn</option>
+                                	<option value="other">Địa Chỉ Khác</option>
+                                </select>
+                            </div>
+                        </div>            
                         <p style="color: red;"><%= request.getAttribute("mess") != null ? request.getAttribute("mess") : " " %></p>
                         <input type="hidden" name="status" value="Waiting">
                         <input type="submit" class="btn btn-info checkday" value="Ðăng Ký">
                         <a href="${pageContext.request.contextPath}/homeuser"><div class="btn btn-warning">Cancel</div></a>
+                        
                     </div>
                     </form>
                 </div>  

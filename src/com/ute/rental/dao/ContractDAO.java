@@ -78,6 +78,88 @@ public class ContractDAO {
 			}
 		}
 	}
+	
+	public void deleteContractDayOtherAddress(int idcontract) {
+		Connection connection = null;
+		Statement statement = null;
+		String sql = "exec 	deleteContractdayOtherAddress '"+idcontract+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.execute(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(statement!=null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	public void deleteContracthour(int idcontract) {
+		Connection connection = null;
+		Statement statement = null;
+		String sql = "exec 	deleteContracthour '"+idcontract+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.execute(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(statement!=null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
+	public void deleteContracthourOtherAddress(int idcontract) {
+		Connection connection = null;
+		Statement statement = null;
+		String sql = "exec 	deleteContracthourOtherAddress '"+idcontract+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.execute(sql);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(statement!=null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		}
+	}
 	public ArrayList<Contract> getContractCustumer(int custumerid) {
 		Connection connection = null;
 		Statement statement = null;

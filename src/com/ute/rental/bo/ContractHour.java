@@ -1,6 +1,6 @@
 package com.ute.rental.bo;
 
-public class ContractHour extends SpeciesContract {
+public class ContractHour extends OtherAddress {
 		private int contractid;
 		private String dayhire;
 		private String timehire;

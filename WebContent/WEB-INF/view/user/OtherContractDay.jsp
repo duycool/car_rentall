@@ -31,19 +31,30 @@
 							Hãy Để Cánh buồm của bạn đón trọn lấy gió.</p>
                 </div>
                 <div class="col-md-5">
-                <form action="${pageContext.request.contextPath}/contractHourDB" method="post">
+                <form action="${pageContext.request.contextPath}/contractOtherday" method="post">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="text-center" style="margin-left: 110px;">TổngTiền</h3>
-                            <p class="text-center" style="margin-left: 110px;">${contractHour.totalMoney}VNĐ</p>
-                         </div>                   
-                       	<div class="row">
-                            <label class="label col-md-2 control-label" for="from">Trả Trước:</label>
+                            <h3 class="text-center" style="margin-left: 110px;">ThôngTin</h3>
+                         </div>
+                       <div class="row">
+                            <label class="label col-md-2 control-label" for="from">Tên:</label>
                             <div class="col-md-10">
-                                <input type="number" class="form-control"   name="deposit" required="required">
+                                <input type="text" class="form-control"   name="name" placeholder="Tên người Nhận" required="required">
                             </div>
-                        </div>                                                                       						                                           
-                        <p style="color: red;"><%= request.getAttribute("message") != null ? request.getAttribute("message") : " " %></p>
+                        </div>
+                         <div class="row">
+                            <label class="label col-md-2 control-label">ĐịaChỉ:</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" name="address" placeholder="Địa Chỉ" required="required" >
+                            </div>
+                        </div>
+                           <div class="row">
+                            <label class="label col-md-2 control-label">SĐT:</label>
+                            <div class="col-md-10">
+                                <input type="number" class="form-control" name="phone"  placeholder="Số Điện Thoại" required="required">
+                            </div>
+                        </div>                                                 						                                           
+                        <p style="color: red;"><%= request.getAttribute("mess") != null ? request.getAttribute("mess") : " " %></p>
                         <input type="hidden" name="status" value="Waiting">
                         <input type="submit" class="btn btn-info checkday" value="Ðăng Ký">
                         <a href="${pageContext.request.contextPath}/homeuser"><div class="btn btn-warning">Cancel</div></a>

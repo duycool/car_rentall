@@ -1,6 +1,6 @@
 package com.ute.rental.bo;
 
-public class SpeciesCar {
+public class SpeciesCar extends Custumer {
 	private int speciesId;
 	private String nameSpecies;
 	public int getSpeciesId() {

@@ -75,7 +75,35 @@ public class ContractDayDAO {
 //			}
 //		}				
 //	}
-	
+	public void AddContractDayOtherAddress (Contractday contractday){
+		Connection connection = null;
+		Statement statement = null;
+		String insert = "exec addContractdayOther '"+contractday.getCustumerid()+"','"+contractday.getId_car()+"','"+contractday.getEmail()+"',N'"+contractday.getAdressDelivery()+"',N'"+contractday.getName()+"','"+contractday.getPhoneNumber()+"','"+contractday.getQuantity()+"','"+contractday.getDeposit()+"','"+contractday.getStatus()+"','"+contractday.getDayhire()+"','"+contractday.getPayday()+"','"+contractday.getTotalday()+"','"+contractday.getTotalMoney()+"','"+contractday.getNameSpecies()+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(insert);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}				
+	}
 	public void AddContractDay (Contractday contractday){
 		Connection connection = null;
 		Statement statement = null;
@@ -173,7 +201,7 @@ public class ContractDayDAO {
 	}
 		return listcontractday;
 	}
-	public ArrayList<Contractday> getAllcontractDayJoin(){
+	public ArrayList<Contractday> getAllcontractDayJoin(int custumerid){
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultset = null;
@@ -181,7 +209,7 @@ public class ContractDayDAO {
 		try {
 			connection = ConnectionFactory.getConnection();
 			statement = connection.createStatement();
-			resultset = statement.executeQuery("exec queryHistoryContractday");
+			resultset = statement.executeQuery("exec queryHistoryContractday '"+custumerid+"'");
 			while(resultset.next()) {
 				listcontractday.add(convertoContractdayJoin(resultset));
 			}
@@ -215,7 +243,63 @@ public class ContractDayDAO {
 		return listcontractday;
 	}
 
-	
+//	public ArrayList<Contractday> getAllcontractDayOtherAddressJoin(int custumerid){
+//		Connection connection = null;
+//		Statement statement = null;
+//		ResultSet resultset = null;
+//		ArrayList<Contractday> listcontractday = new ArrayList<Contractday>();
+//		try {
+//			connection = ConnectionFactory.getConnection();
+//			statement = connection.createStatement();
+//			resultset = statement.executeQuery("exec queryHistoryContractdayOtherAddress '"+custumerid+"'");
+//			while(resultset.next()) {
+//				listcontractday.add(convertoContractdayAddressJoin(resultset));
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			if(connection != null) {
+//			try {
+//				connection.close();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		if(statement != null) {
+//			try {
+//				statement.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		if(resultset != null) {
+//			try {
+//				resultset.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+//		return listcontractday;
+//	}
+	private Contractday convertoContractdayAddressJoin(ResultSet rs) throws SQLException {
+		Contractday contractday = new  Contractday();
+		contractday.setContractid(rs.getInt(1));
+		contractday.setId_car(rs.getInt(2));
+		contractday.setAvatar(rs.getString(3));
+		contractday.setNameCar(rs.getString(4));
+		contractday.setDayhire(rs.getString(5));
+		contractday.setPayday(rs.getString(6));
+		contractday.setTotalday(rs.getInt(7));
+		contractday.setTotalMoney(rs.getInt(8));
+		contractday.setStatus(rs.getString(9));
+		contractday.setName(rs.getString(10));
+		contractday.setPhoneNumber(rs.getString(11));
+		contractday.setAdressDelivery(rs.getString(12));
+		return contractday;
+	}
 	public Contractday getContractDay(int contractid) {
 		Connection connection = null;
 		Statement statement = null;
@@ -278,14 +362,13 @@ public class ContractDayDAO {
 			contractday.setTotalday(rs.getInt(7));
 			contractday.setTotalMoney(rs.getInt(8));
 			contractday.setStatus(rs.getString(9));
+			contractday.setName(rs.getString(10));
+			contractday.setPhoneNumber(rs.getString(11));
+			contractday.setAdressDelivery(rs.getString(12));
 			return contractday;
 	}
 	public static void main(String[] args) {
-		ContractDayDAO dao = new ContractDayDAO();
-		ArrayList<Contractday> listjoin = dao.getAllcontractDayJoin();
-		for (Contractday contractday : listjoin) {
-			System.out.println(contractday.getStatus());
-		}
+		
 		
 	}
 	

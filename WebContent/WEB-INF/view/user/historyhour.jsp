@@ -21,28 +21,26 @@
 			<th scope="col" >Ảnh Xe</th>
 			<th scope="col" >Tên Xe</th>
 			<th scope="col" >Ngày Thuê</th>
-			<th scope="col">Ngày Trả</th>
-			<th scope="col">Tổng Ngày</th>
-			<th scope="col">Tổng Tiền</th>			
-			<th scope="col">Địa Chỉ</th>
-			<th scope="col">Số Điện Thoại</th>
+			<th scope="col">Giờ Thuê</th>
+			<th scope="col">Giờ Trả</th>
+			<th scope="col">Tổng Giờ Thuê</th>
+			<th scope="col">Tổng Tiền</th>
 			<th scope="col">Trạng Thái</th>
 			<th scope="col">Hủy</th>
 		</tr>
 	</thead>
-	<c:forEach items="${listcontractday}" var ="contractday">
+	<c:forEach items="${lisContractHour}" var ="history">
 	<tbody>		
 		<tr>						
-			<td scope="row"><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>	
-			<td>${contractday.nameCar}</td>	
-			<td>${contractday.dayhire}</td>		
-			<td>${contractday.payday}</td>
-			<td>${contractday.totalday}</td>
-			<td>${contractday.totalMoney}</td>		
-			<td>${contractday.adressDelivery}</td>
-			<td>${contractday.phoneNumber}</td>
-			<td>${contractday.status}</td>
-			<td><a href="deleteContractDay?id_contract=${contractday.contractid}" ><i class="fa fa-times text-danger text">Hủy</i></a></td>									
+			<td scope="row"><img src="images/${history.avatar}" width="170px" height="220px"/></td>	
+			<td>${history.nameCar}</td>	
+			<td>${history.dayhire}</td>		
+			<td>${history.timehire}</td>
+			<td>${history.paytime}</td>
+			<td>${history.totaltime}</td>
+			<td>${history.totalMoney}</td>
+			<td>${history.status}</td>
+			<td><a href="deleteContracthour?id_contract=${history.contractid}" ><i class="fa fa-times text-danger text">Hủy</i></a></td>									
 		</tr>		
 	</tbody>
 	</c:forEach>

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.ute.rental.bo.ContractHour;
+import com.ute.rental.bo.Contractday;
 import com.ute.rental.dbconnection.ConnectionFactory;
 
 public class ContractHourDAO   {
@@ -39,7 +40,35 @@ public class ContractHourDAO   {
 			}
 		}				
 	}
-
+	public void AddContractHourOtherAddress (ContractHour contractHour){
+		Connection connection = null;
+		Statement statement = null;
+		String insert = "exec addContracthourOther '"+contractHour.getCustumerid()+"','"+contractHour.getId_car()+"','"+contractHour.getEmail()+"',N'"+contractHour.getAdressDelivery()+"',N'"+contractHour.getName()+"','"+contractHour.getPhoneNumber()+"','"+contractHour.getQuantity()+"','"+contractHour.getDeposit()+"','"+contractHour.getStatus()+"','"+contractHour.getDayhire()+"','"+contractHour.getTimehire()+"','"+contractHour.getPaytime()+"','"+contractHour.getTotaltime()+"','"+contractHour.getTotalMoney()+"','"+contractHour.getNameSpecies()+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(insert);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}				
+	}
 public ArrayList<ContractHour> getAllcontractHourJoin(int custumerid){
 		Connection connection = null;
 		Statement statement = null;

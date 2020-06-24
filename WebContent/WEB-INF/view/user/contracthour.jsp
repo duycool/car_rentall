@@ -32,19 +32,13 @@
                 <form action="${pageContext.request.contextPath}/contractHour" method="post" id="form-login">
                     <div class="row">
                         <div class="col-md-6">
-                            <h3 class="text-center" style="margin-left: 110px;">ContractRentalHour</h3>
+                            <h3 class="text-center" style="margin-left: 110px;">HợpĐồngThuêTheoGiờ</h3>
                          </div>
                          <div class="col-md-6">
                              <span class="glyphicon glyphicon-pencil"></span>
                          </div>
                         <hr>                         
-                        <img src="images/${car.avatar}" width="350px" hight="200px" alt="" name="uploadFile" style="margin-left: 50px;">
-                          <div class="row">
-                            <label class="label col-md-2 control-label">ĐịaChỉ:</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" name="address" placeholder="địa chỉ giao xe">
-                            </div>
-                        </div>	
+                        <img src="images/${car.avatar}" width="350px" hight="200px" alt="" name="uploadFile" style="margin-left: 50px;">                  
                           <div class="row">
                             <label class="label col-md-2 control-label">NgàyThuê:</label>
                             <div class="col-md-10">
@@ -268,11 +262,20 @@
                             <label class="label col-md-2 control-label" for="from">TổngPhútThuê:</label>
                             <div class="col-md-5">
                                 <input type="text" id="tongphut" class="input form-control  form-control-y " name="totalMinute" style="font-size: 30px"  name="toltalminu1" readonly="readonly" >                       
-                            </div>                                             
+                            </div> 
+                            </div>
+                        <div class="row">
+                            <label class="label col-md-2 control-label"  >ĐịaChỉGiao:</label>
+                            <div class="col-md-10">
+                                <select  class="form-control"  name="address" >
+                                	<option value="ofyou">Địa Chỉ Của Bạn</option>
+                                	<option value="other">Địa Chỉ Khác</option>
+                                </select>
+                            </div>
+                        </div>                                              
                         <input type="submit" class="btn btn-info" value="Tiếp Tục" >
                         <a href="${pageContext.request.contextPath}/homeuser"><div class="btn btn-warning">Cancel</div></a>
-                            <p style="color: red;"><%= request.getAttribute("mess") != null ? request.getAttribute("mess") : " " %></p>
-                    </div>                      
+                            <p style="color: red;"><%= request.getAttribute("mess") != null ? request.getAttribute("mess") : " " %></p>                                        
                      </div>
                       
                     </form>

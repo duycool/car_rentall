@@ -1,7 +1,6 @@
 package com.ute.rental.servlet.user;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,19 +12,18 @@ import javax.servlet.http.HttpSession;
 
 import com.ute.rental.bo.ContractHour;
 import com.ute.rental.dao.ContractHourDAO;
-import com.ute.rental.dao.MethodDAO;
 
 /**
- * Servlet implementation class HistoryContractHourServlet
+ * Servlet implementation class ContractOtherhourServlet
  */
-@WebServlet(name = "historyContractHour", urlPatterns = { "/historyContractHour" })
-public class HistoryContractHourServlet extends HttpServlet {
+@WebServlet(name = "contractOtherhour", urlPatterns = { "/contractOtherhour" })
+public class ContractOtherhourServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HistoryContractHourServlet() {
+    public ContractOtherhourServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,15 +33,23 @@ public class HistoryContractHourServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");	
 		HttpSession session = request.getSession();
-		int custumerid = (int) session.getAttribute("custumerid");
-		
+		String address = request.getParameter("address");
+		String name = request.getParameter("name");
+		String phonenumber =  request.getParameter("phone");
+		int deposit = Integer.parseInt(request.getParameter("deposit"));
+		ContractHour contractHour = (ContractHour) session.getAttribute("contractHour");
+		contractHour.setAdressDelivery(address);
+		contractHour.setPhoneNumber(phonenumber);
+		contractHour.setName(name);
+		contractHour.setDeposit(deposit);
 		ContractHourDAO contractHourDAO = new ContractHourDAO();
-		ArrayList<ContractHour> lisContractHour = MethodDAO.listContracthouParse(contractHourDAO.getAllcontractHourJoin(custumerid));			
-		request.setAttribute("lisContractHour", lisContractHour);
-		RequestDispatcher dispatcher =
-					this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/historyhour.jsp");
+		contractHourDAO.AddContractHourOtherAddress(contractHour);
+		String result = "Đăng ký thành công !";
+		request.setAttribute("result", result);
+		RequestDispatcher dispatcher = 
+					this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/ResultSuccess.jsp");
 		dispatcher.forward(request, response);
 	}
 

@@ -114,40 +114,28 @@ public class MethodDAO {
 		String [] ngaythangnamthue = hireDayStr.split("/");						
 		int namht = Integer.parseInt(ngaythangnamht[0]);	
 		int thanght = Integer.parseInt(ngaythangnamht[1]);
-		int ngayht = Integer.parseInt(ngaythangnamht[2]);
-		
+		int ngayht = Integer.parseInt(ngaythangnamht[2]);		
 		int namthue = Integer.parseInt(ngaythangnamthue[0]);
 		int thangthue = Integer.parseInt(ngaythangnamthue[1]);
-		int ngaythue = Integer.parseInt(ngaythangnamthue[2]);	
-		
+		int ngaythue = Integer.parseInt(ngaythangnamthue[2]);			
 		int tinhnam = (namht - namthue);
 		int tinhthang = (thanght - thangthue);
-		int tinhngay = (ngayht - ngaythue);
-		int tinhtong = (namht - namthue) + (thanght - thangthue) + (ngayht - ngaythue);	
-		int tinhtongthang = (namht - namthue) + (thanght - thangthue);
-//		if(tinhnam > 0 && tinhthang > 0 && tinhngay > 0 ) {
-//			return true;		
-//		}else if(tinhnam  > 0 && tinhthang <= 0 && tinhngay <= 0) {
-//			return true;			
-//		}else if(tinhnam <= 0 ) {
-//			if(tinhthang > 0 && tinhngay <= 0) {
-//				return true;
-//			}else if(tinhthang <= 0 && tinhngay > 0) {
-//				return true;
-//			}
-//			return false;
-//		}			
-		if(tinhtong > 0) {
+		int tinhngay = (ngayht - ngaythue);	
+		if(tinhnam > 0) {
 			return true;
-		}else if(tinhtongthang > 0) {
-			return true;
-		}else if(tinhnam > 0) {
-			return true;
+		}else {
+			if(tinhthang > 0) {
+				return true;
+			}else if(tinhthang < 0) {
+				return false;
+			}else {
+				if(tinhngay > 0) {
+					return true;
+				}else {
+					return false;
+				}			
+			}
 		}
-		if(tinhthang > 0){
-			return true;
-		}
-		return false;		
 	}
 	public static String hashPass(String pass) {
 		String hash = BCrypt.hashpw(pass, BCrypt.gensalt(12));
@@ -263,11 +251,30 @@ public class MethodDAO {
 			contractHour.setTimehire(MethodDAO.ParseTimeInDatabase(contractHour.getTimehire()));
 			contractHour.setPaytime(MethodDAO.ParseTimeInDatabase(contractHour.getPaytime()));
 			contractHour.setTotaltime(MethodDAO.ParseTimeInDatabase(contractHour.getTotaltime()));
+			contractHour.setStatus(MethodDAO.ParseStatusContract(contractHour.getStatus()));
 			listCheck.add(contractHour);
 		}
 		return listCheck;	
 	}
-
+	public static String ParseStatusContract(String status) {
+		if(status.equals("newRent")) {
+			return "Đang Chờ";
+		}else if(status.equals("AlreadyPaid")) {
+			return "Đã Trả";
+		}else {
+			return "Đang giao";
+		}
+	}
+	public static ArrayList<Contractday> listContractdayParse(ArrayList<Contractday> lisContractday){
+		ArrayList<Contractday> listCheck = new ArrayList<Contractday>();
+		for (Contractday contractday : lisContractday) {
+			contractday.setDayhire(MethodDAO.ParseDateInDatabase(contractday.getDayhire()));
+			contractday.setPayday(MethodDAO.ParseDateInDatabase(contractday.getPayday()));
+			contractday.setStatus(MethodDAO.ParseStatusContract(contractday.getStatus()));
+			listCheck.add(contractday);
+		}
+		return listCheck;	
+	}
 	public static void main(String[] args)  {		
 //		ContractDayDAO dao = new ContractDayDAO();
 //		ArrayList<Contractday> listcontract = dao.getAllcontractDayJoin();		
