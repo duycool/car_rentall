@@ -170,6 +170,47 @@ public class CustumerDAO {
 		}
 		return null;	
 	}
+	public Custumer getCustumerByCustumerid(int custumerid) {
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		String sql = "SELECT * FROM custumer WHERE custumerid = '"+custumerid+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				Custumer custumer = convertoCustumer(resultSet);
+				return custumer;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			
+		}
+		return null;	
+	}
 	public Custumer getCustumerByidCustumer(int id) {
 		Connection connection = null;
 		Statement statement = null;

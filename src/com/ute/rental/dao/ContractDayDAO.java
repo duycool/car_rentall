@@ -133,6 +133,35 @@ public class ContractDayDAO {
 			}
 		}				
 	}
+	public void UpdateStatusContract (Contractday contractday){
+		Connection connection = null;
+		Statement statement = null;
+		String insert = "exec updateStatusContractdayadmin '"+contractday.getContractid()+"','"+contractday.getStatus()+"','"+contractday.getStaffid()+"','"+contractday.getDeliveryTime()+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(insert);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}				
+	}
 	public void deleteContractDay(int contractid) {
 		Connection connection = null;
 		Statement statement = null;
@@ -242,7 +271,67 @@ public class ContractDayDAO {
 	}
 		return listcontractday;
 	}
-
+	
+	public ArrayList<Contractday> getAllcontractDayJoin(){
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<Contractday> listcontractday = new ArrayList<Contractday>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("select * from showAllContractday");
+			while(resultset.next()) {
+				listcontractday.add(convertoContractdayAll(resultset));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(resultset != null) {
+			try {
+				resultset.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+		return listcontractday;
+	}
+private Contractday convertoContractdayAll(ResultSet rs) throws SQLException {
+		Contractday contractday = new Contractday();
+		contractday.setContractid(rs.getInt(1));
+		contractday.setCustumerid(rs.getInt(2));
+		contractday.setId_car(rs.getInt(3));
+		contractday.setEmail(rs.getString(4));
+		contractday.setAdressDelivery(rs.getString(5));
+		contractday.setQuantity(rs.getInt(6));
+		contractday.setDeposit(rs.getInt(7));
+		contractday.setStatus(rs.getString(8));
+		contractday.setDayhire(rs.getString(9));
+		contractday.setPayday(rs.getString(10));
+		contractday.setTotalday(rs.getInt(11));
+		contractday.setNameSpecies(rs.getString(12));	
+		contractday.setAvatar(rs.getString(13));
+		contractday.setNameCar(rs.getString(14));
+		contractday.setTotalMoney(rs.getInt(15));
+		return contractday;
+	}
 //	public ArrayList<Contractday> getAllcontractDayOtherAddressJoin(int custumerid){
 //		Connection connection = null;
 //		Statement statement = null;
@@ -368,7 +457,11 @@ public class ContractDayDAO {
 			return contractday;
 	}
 	public static void main(String[] args) {
-		
+		ContractDayDAO contractDayDAO = new ContractDayDAO();
+		ArrayList<Contractday> lisContractdays = contractDayDAO.getAllcontractDayJoin(1);
+		for(Contractday contractday : lisContractdays) {
+			System.out.println(contractday.getAdressDelivery());
+		}
 		
 	}
 	

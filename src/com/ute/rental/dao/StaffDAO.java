@@ -102,6 +102,7 @@ public class StaffDAO {
 		staff.setAddress(rs.getString(4));
 		staff.setPhone(rs.getString(5));
 		staff.setWorks(rs.getString(6));
+		staff.setEmail(rs.getString(7));
 		return staff;
 	}
 	
@@ -209,6 +210,47 @@ public class StaffDAO {
 		}
 		return null;	
 	}
+	public Staff getStaffByidStaff(int staffid) {
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		String sql = "SELECT * FROM staff WHERE staffid = '"+staffid+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				Staff staff = convertoStaff(resultSet);
+				return staff;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			
+		}
+		return null;	
+	}
 	public void AddStaff (Staff staff){
 		Connection connection = null;
 		Statement statement = null;
@@ -266,6 +308,8 @@ public class StaffDAO {
 		}
 	}
 	public static void main(String[] args) {
-	
+		StaffDAO staffDAO = new StaffDAO();
+		Staff staff = staffDAO.getStaffByidStaff(3);
+		System.out.println(staff.getEmail());
 	}
 }

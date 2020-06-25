@@ -2,7 +2,7 @@ package com.ute.rental.bo;
 
 import com.ute.rental.dao.MethodDAO;
 
-public class Contractday extends OtherAddress {
+public class Contractday extends ContractDelivery {
 		private int contractid;
 		private String 	dayhire;
 		private String payday;

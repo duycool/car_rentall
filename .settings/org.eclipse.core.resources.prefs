@@ -9,6 +9,7 @@ encoding//src/com/ute/rental/servlet/RegistrationServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/admin/AddPromotionServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/admin/DeletePromotionAdminServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/admin/DeletePromotionDetailsByIdServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/admin/UpdateContractdayServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/admin/ViewpromotionAdminServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/user/ChangePassUserServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/user/CommentServlet.java=UTF-8
