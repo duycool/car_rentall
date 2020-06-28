@@ -38,15 +38,25 @@ public class ListcontractdayServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		String work = "staffdelivery";
+		String status = request.getParameter("status");
 		ContractDayDAO contractDayDAO  = new ContractDayDAO();
 		StaffDAO dao = new StaffDAO();
-		ArrayList<Contractday> listContractday = MethodDAO.listContractdayParse(contractDayDAO.getAllcontractDayJoin());	
+		ArrayList<Contractday> listContractday = MethodDAO.listContractdayParse(contractDayDAO.getAllcontractDayJoin(status));	
 		ArrayList<Staff> lisStaff  = dao.getAllStaffByWork(work);
-		request.setAttribute("listContractday", listContractday);
-		request.setAttribute("lisStaff", lisStaff);
-		RequestDispatcher dispatcher =
-				this.getServletContext().getRequestDispatcher("/WEB-INF/view/admin/listcontractday.jsp");
-		dispatcher.forward(request, response);
+		if(MethodDAO.checkStatusContractDay(listContractday)) {
+			request.setAttribute("listContractday", listContractday);
+			request.setAttribute("lisStaff", lisStaff);
+			RequestDispatcher dispatcher =
+					this.getServletContext().getRequestDispatcher("/WEB-INF/view/admin/listcontractday.jsp");
+			dispatcher.forward(request, response);
+		}else {
+			request.setAttribute("listContractday", listContractday);
+			request.setAttribute("lisStaff", lisStaff);
+			RequestDispatcher dispatcher =
+					this.getServletContext().getRequestDispatcher("/WEB-INF/view/admin/listcontractday.jsp");
+			dispatcher.forward(request, response);
+		}
+		
 		
 	}
 

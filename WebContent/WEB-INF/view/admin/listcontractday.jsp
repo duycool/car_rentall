@@ -22,6 +22,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
@@ -75,16 +79,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
             <td>${contractday.nameCar}</td> 
             <td>${contractday.totalMoney}</td> 
-			<td>
-			<form action="updateContractday" method="get">
-           	<c:forEach items="${lisStaff}" var="staff">          		
-           			<select name="staff">
-           				<option value="${staff.staffid}">${staff.fullname}</option>
-           			</select>         		 
-           	</c:forEach>  
-           	<input type="hidden" value="${contractday.contractid}" name="idcontract">
-           	<input type="submit" value="Cập nhật">
-           	</form>
+			<td> 
+			<c:forEach items="${lisStaff}" var="staff">      	
+           	<div class="dropdown">
+    		<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+    	  	Chọn
+   			 </button>
+    		<div class="dropdown-menu">
+     		 <a class="dropdown-item" href="${pageContext.request.contextPath}/updateContractday?idcontract=${contractday.contractid}&staff=${staff.staffid}">${staff.fullname}</a>    		
+    		</div>
+  			</div>
+  			</c:forEach>
            	</td>             
              <td>            
              	<a href="contractdayPDF?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         

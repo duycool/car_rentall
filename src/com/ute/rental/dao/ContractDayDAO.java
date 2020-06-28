@@ -136,7 +136,7 @@ public class ContractDayDAO {
 	public void UpdateStatusContract (Contractday contractday){
 		Connection connection = null;
 		Statement statement = null;
-		String insert = "exec updateStatusContractdayadmin '"+contractday.getContractid()+"','"+contractday.getStatus()+"','"+contractday.getStaffid()+"','"+contractday.getDeliveryTime()+"'";
+		String insert = "exec updateStatusContractdayadmin '"+contractday.getContractid()+"','"+contractday.getStatus()+"','"+contractday.getStaffid()+"'";
 		try {
 			connection = ConnectionFactory.getConnection();
 			statement = connection.createStatement();
@@ -272,7 +272,7 @@ public class ContractDayDAO {
 		return listcontractday;
 	}
 	
-	public ArrayList<Contractday> getAllcontractDayJoin(){
+	public ArrayList<Contractday> getAllcontractDayJoin(String status){
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet resultset = null;
@@ -280,7 +280,7 @@ public class ContractDayDAO {
 		try {
 			connection = ConnectionFactory.getConnection();
 			statement = connection.createStatement();
-			resultset = statement.executeQuery("select * from showAllContractday");
+			resultset = statement.executeQuery("exec showAllContractday '"+status+"'");
 			while(resultset.next()) {
 				listcontractday.add(convertoContractdayAll(resultset));
 			}

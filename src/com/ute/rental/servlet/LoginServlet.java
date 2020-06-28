@@ -66,6 +66,7 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				response.setContentType("text/html;charset=UTF-8");
 				request.setCharacterEncoding("UTF-8");
+				//session.setAttribute("users", users);
 				if (users.getRoles().equals("admin")) {
 					session.setAttribute("userNameAdmin", users.getUsername());
 					session.setAttribute("roles", users.getRoles());

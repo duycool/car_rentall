@@ -128,7 +128,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>QUẢN LÝ HỢP ĐỒNG</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/listcontractday">Hợp Đồng Thuê Theo Ngày</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractday?status=newRent">Hợp Đồng Thuê Theo Ngày Mới Thuê</a></li>
+                          <li><a href="${pageContext.request.contextPath}/listcontractday?status=delivery">Hợp Đồng Thuê Theo Ngày</a></li>
                          <li><a href="${pageContext.request.contextPath}/listcontracthour">Hợp Đồng Thuê Theo Giờ</a></li>                   
                     </ul>
                 </li>                   

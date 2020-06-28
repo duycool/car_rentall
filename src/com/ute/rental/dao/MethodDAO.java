@@ -22,11 +22,13 @@ import org.eclipse.jdt.internal.compiler.batch.Main;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.ute.rental.bo.Contract;
+import com.ute.rental.bo.ContractDelivery;
 import com.ute.rental.bo.ContractHour;
 import com.ute.rental.bo.Contractday;
 import com.ute.rental.bo.Promotion;
 import com.ute.rental.bo.PromotionDetails;
 import com.ute.rental.bo.SpeciesCar;
+import com.ute.rental.bo.Staff;
 
 
 public class MethodDAO {
@@ -274,6 +276,21 @@ public class MethodDAO {
 			listCheck.add(contractday);
 		}
 		return listCheck;	
+	}
+	public static boolean checkStatusContractDay(ArrayList<Contractday> listContractday) {		
+		String status = null;	
+		for(Contractday contractday : listContractday) {
+			if(contractday.getStatus().equals("newRent")) {
+				String arr[] = contractday.getStatus().split(" ");
+				for(String chuoi : arr) {
+					status +=chuoi;
+				}				
+			}
+		}
+		if(status != null) {
+			return true;
+		}
+		return false;
 	}
 	public static void main(String[] args)  {		
 //		ContractDayDAO dao = new ContractDayDAO();

@@ -67,69 +67,51 @@ public class UpdateContractdayServlet extends HttpServlet {
 			contractday.setStaffid(staffid);
 			contractday.setContractid(idcontract);	
 			contractday.setStatus(status);
-			HttpSession session = request.getSession();
-			session.setAttribute("contractday", contractday);
-			session.setAttribute("staffid", staffid);
-			ContractDayDAO contractDayDAO = new  ContractDayDAO();
-			contractday = contractDayDAO.getContractDay(idcontract);
-			contractday.setDayhire(MethodDAO.ParseDateInDatabase(contractday.getDayhire()));
-			request.setAttribute("contractday", contractday);
-		
-			RequestDispatcher dispatcher = 
-						this.getServletContext().getRequestDispatcher("/WEB-INF/view/admin/CreateDeliveryDay.jsp");
-			dispatcher.forward(request, response);
+			ContractDayDAO contractDayDAO = new ContractDayDAO();
+			CustumerDAO custumerDAO = new CustumerDAO();
+			StaffDAO staffDAO = new StaffDAO();
+			CarDAO carDAO = new  CarDAO();
+			ContractDAO contractDAO = new ContractDAO();
+			
+			Contractday contractday1 = contractDayDAO.getContractDay(idcontract);
+			Contract contract = contractDAO.getContract(idcontract);
+			Custumer custumer = custumerDAO.getCustumerByCustumerid(contract.getCustumerid());
+			Staff staff = staffDAO.getStaffByidStaff(staffid);
+			Car car = carDAO.getCar(contract.getId_car());
+			String emailStaff = staff.getEmail();
+			String emailCustumer = custumer.getEmail();
+
+			try {			
+				String subject = "Notification !";
+				String contentStaff = "Giao Xe vào Ngày Dự Kiến Là'"+MethodDAO.ParseDateInDatabase(contractday1.getDayhire())+"' Vui lòng Thực Hiện Đúng yêu cầu của cửa hàng";
+				String contentCustumer = "Xe '"+car.getNameCar()+"' bạn thuê  Vào Ngày '"+MethodDAO.ParseDateInDatabase(contractday1.getDayhire())+"' Đã Được Duyệt"
+						+ "	Vui lòng đợi ngày nhận xe";
+				
+				contractDayDAO.UpdateStatusContract(contractday);
+				
+				try {
+					EmailUtility.sendEmail(host, port, user, pass, emailStaff, subject,
+							contentStaff);
+					EmailUtility.sendEmail(host, port, user, pass, emailCustumer, subject,
+							contentCustumer);
+				} catch (Exception ex) {
+					ex.printStackTrace();			
+				} finally {
+					response.setContentType("text/html;charset=UTF-8");
+					request.setCharacterEncoding("UTF-8");
+					response.sendRedirect(request.getContextPath() + "/listcontractday");
+				}			
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
-		String datehireStr = request.getParameter("date");
-		HttpSession session = request.getSession();
-		ContractDayDAO contractDayDAO = new ContractDayDAO();
-		CustumerDAO custumerDAO = new CustumerDAO();
-		StaffDAO staffDAO = new StaffDAO();
-		CarDAO carDAO = new  CarDAO();
-		ContractDAO contractDAO = new ContractDAO();
-		Contractday contractday1 = (Contractday) session.getAttribute("contractday");
-		Contractday contractday = contractDayDAO.getContractDay(contractday1.getContractid());
-		Contract contract = contractDAO.getContract(contractday.getContractid());
-		Custumer custumer = custumerDAO.getCustumerByCustumerid(contract.getCustumerid());
-		int staffid = (int) session.getAttribute("staffid");
-		Staff staff = staffDAO.getStaffByidStaff(staffid);
-		Car car = carDAO.getCar(contract.getId_car());
-		String emailStaff = staff.getEmail();
-		String emailCustumer = custumer.getEmail();
-	
-		try {
-			Date date = MethodDAO.StringToDateHour(datehireStr);
-			String hireday = new SimpleDateFormat("yyyy/MM/dd").format(date);
-			contractday1.setDeliveryTime(hireday + " " + MethodDAO.TimeHientai());
-			String subject = "Notification !";
-			String contentStaff = "Giao Xe vào Ngày '"+MethodDAO.ParseDateInDatabase(contractday.getDayhire())+"'";
-			String contentCustumer = "Xe '"+car.getNameCar()+"' bạn thuê  Vào Ngày '"+MethodDAO.ParseDateInDatabase(contractday.getDayhire())+"' Đã Được Duyệt"
-					+ "	Vui lòng đợi ngày nhận xe";
-			
-			contractDayDAO.UpdateStatusContract(contractday1);
-			
-			try {
-				EmailUtility.sendEmail(host, port, user, pass, emailStaff, subject,
-						contentStaff);
-				EmailUtility.sendEmail(host, port, user, pass, emailCustumer, subject,
-						contentCustumer);
-			} catch (Exception ex) {
-				ex.printStackTrace();			
-			} finally {
-				response.setContentType("text/html;charset=UTF-8");
-				request.setCharacterEncoding("UTF-8");
-				response.sendRedirect(request.getContextPath() + "/listcontractday");
-			}			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+		
 	}
 	public static void main(String[] args) {
 		
