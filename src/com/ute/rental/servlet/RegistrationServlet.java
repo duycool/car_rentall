@@ -131,8 +131,8 @@ public class RegistrationServlet extends HttpServlet {
 				response.setContentType("text/html;charset=UTF-8");
 				request.setCharacterEncoding("UTF-8");
 				HttpSession session = request.getSession();			
-				//session.setAttribute("custumer", custumer);
-				//session.setAttribute("content",content);
+				session.setAttribute("custumer", custumer);
+				session.setAttribute("content",content);
 				request.setAttribute("message", resultMessage);
 				//request.setAttribute("content",content);
 				getServletContext().getRequestDispatcher("/WEB-INF/view/registrationCode.jsp").forward(request, response);

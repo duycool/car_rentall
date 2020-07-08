@@ -61,7 +61,7 @@ public class UpdateContractdayServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			int staffid = Integer.parseInt(request.getParameter("staff"));
 			int idcontract = Integer.parseInt(request.getParameter("idcontract"));
-			String status = "delivery";
+			String status = "Approved";
 			
 			Contractday contractday = new Contractday();
 			contractday.setStaffid(staffid);
@@ -99,7 +99,7 @@ public class UpdateContractdayServlet extends HttpServlet {
 				} finally {
 					response.setContentType("text/html;charset=UTF-8");
 					request.setCharacterEncoding("UTF-8");
-					response.sendRedirect(request.getContextPath() + "/listcontractday");
+					response.sendRedirect(request.getContextPath() + "/listcontracthour");
 				}			
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

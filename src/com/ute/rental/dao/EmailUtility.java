@@ -39,7 +39,7 @@ public class EmailUtility {
  
         // creates a new e-mail message
         Message msg = new MimeMessage(session);
- 
+        msg.setHeader("Content-Type","text/plain; charset=UTF-8");
         msg.setFrom(new InternetAddress(userName));
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);

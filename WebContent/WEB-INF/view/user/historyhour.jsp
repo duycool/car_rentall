@@ -13,7 +13,7 @@
 <body>
 	<jsp:include page="/WEB-INF/view/templ/headeruser1.jsp"></jsp:include>
 	<div class="container">
-	<h2 align="center" class="text-secondary">Lịch Sử Thuê Xe Theo Ngày</h2>
+	<h2 align="center" class="text-secondary">Lịch Sử Thuê Xe Theo Giờ</h2>
 	<h2 align="center" style="color: red;"><%= request.getAttribute("notification") != null ? request.getAttribute("notification") : " " %></h2>
 	<table class="table table-info">
 	<thead>

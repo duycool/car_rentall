@@ -61,8 +61,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th>TỔNG NGÀY</th>
             <th>ẢNH XE</th>
             <th>TÊN XE</th>
-            <th>TỔNG TIỀN</th> 
-            <th>NHÂN VIÊN</th>         
+            <th>TỔNG TIỀN</th>   
+            <th>TRẠNG THÁI HĐ</th>      
             <th>TÁC VỤ</th>             
           </tr>
         </thead>
@@ -78,19 +78,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td>${contractday.totalday}</td>
             <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
             <td>${contractday.nameCar}</td> 
-            <td>${contractday.totalMoney}</td> 
-			<td> 		    	
-           	<div class="dropdown"> 
-           	    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      		Chọn
-   			 </button> 	   			  
-    		<div class="dropdown-menu">
-    		<c:forEach items="${lisStaff}" var="staff"> 
-     		 <a class="dropdown-item" href="${pageContext.request.contextPath}/updateContractday?idcontract=${contractday.contractid}&staff=${staff.staffid}">${staff.fullname}</a>    		
-    		</c:forEach>
-    		</div>    		
-  			</div>  			
-           	</td>             
+            <td>${contractday.totalMoney}</td>     
+            <td>${contractday.status}</td>         
              <td>            
              	<a href="contractdayPDF?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         
              </td>                  

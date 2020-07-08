@@ -54,6 +54,7 @@ public class CreateStaffServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password =MethodDAO.hashPass(request.getParameter("passwords"));
 		String work = request.getParameter("work");
+		String action = "normal";
 		
 		
 		String m = "Username available!!";
@@ -82,6 +83,7 @@ public class CreateStaffServlet extends HttpServlet {
 		staff.setEmail(email);
 		staff.setPasswords(password);
 		staff.setRoles(work);
+		staff.setAction(action);
 		
 		
 		StaffDAO dao = new StaffDAO();

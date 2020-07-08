@@ -40,6 +40,58 @@ public class ContractHourDAO   {
 			}
 		}				
 	}
+	public ContractHour getContractHour(int contractid) {
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		String sql = "SELECT * FROM contracthour WHERE contractid = '"+contractid+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				ContractHour contractHour = convertoContractHour(resultSet);
+				return contractHour;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			
+		}
+		return null;
+		
+	}
+
+	private ContractHour convertoContractHour(ResultSet rs) throws SQLException {
+		ContractHour contractHour = new ContractHour();
+		contractHour.setContractid(rs.getInt(1));
+		contractHour.setDayhire(rs.getString(2));
+		contractHour.setTimehire(rs.getString(3));
+		contractHour.setPaytime(rs.getString(4));
+		contractHour.setTotaltime(rs.getString(5));
+		return contractHour;
+	}
 	public void AddContractHourOtherAddress (ContractHour contractHour){
 		Connection connection = null;
 		Statement statement = null;
@@ -110,7 +162,97 @@ public ArrayList<ContractHour> getAllcontractHourJoin(int custumerid){
 	}
 		return listcontracthour;
 	}
+public ArrayList<ContractHour> getAllcontractHourJoin(String status){
+	Connection connection = null;
+	Statement statement = null;
+	ResultSet resultset = null;
+	ArrayList<ContractHour> listcontracthour = new ArrayList<ContractHour>();
+	try {
+		connection = ConnectionFactory.getConnection();
+		statement = connection.createStatement();
+		resultset = statement.executeQuery("exec showAllContracthour '"+status+"'");
+		while(resultset.next()) {
+			listcontracthour.add(convertoContracthourAll(resultset));
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		if(connection != null) {
+		try {
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	if(statement != null) {
+		try {
+			statement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	if(resultset != null) {
+		try {
+			resultset.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}
+	return listcontracthour;
+}
 
+public void UpdateStatusContracthour (ContractHour contractHour){
+	Connection connection = null;
+	Statement statement = null;
+	String insert = "exec updateStatusContracthouradmin '"+contractHour.getContractid()+"','"+contractHour.getStatus()+"','"+contractHour.getStaffid()+"'";
+	try {
+		connection = ConnectionFactory.getConnection();
+		statement = connection.createStatement();
+		statement.executeUpdate(insert);
+		
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}finally {
+		if(connection != null) {
+			try {
+				connection.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(statement != null) {
+			try {
+				statement.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+			
+		}
+	}				
+}
+private ContractHour convertoContracthourAll(ResultSet rs) throws SQLException {
+	ContractHour contractHour = new  ContractHour();
+	contractHour.setContractid(rs.getInt(1));
+	contractHour.setCustumerid(rs.getInt(2));
+	contractHour.setId_car(rs.getInt(3));
+	contractHour.setEmail(rs.getString(4));
+	contractHour.setAdressDelivery(rs.getString(5));
+	contractHour.setQuantity(rs.getInt(6));
+	contractHour.setDeposit(rs.getInt(7));
+	contractHour.setStatus(rs.getString(8));
+	contractHour.setDayhire(rs.getString(9));
+	contractHour.setTimehire(rs.getString(10));
+	contractHour.setPaytime(rs.getString(11));
+	contractHour.setTotaltime(rs.getString(12));
+	contractHour.setNameSpecies(rs.getString(13));
+	contractHour.setAvatar(rs.getString(14));
+	contractHour.setNameCar(rs.getString(15));
+	contractHour.setTotalMoney(rs.getInt(16));
+	return contractHour;
+}
 private ContractHour convertoContractHourJoin(ResultSet rs) throws SQLException {
 	ContractHour contractHour = new  ContractHour();
 	contractHour.setContractid(rs.getInt(1));

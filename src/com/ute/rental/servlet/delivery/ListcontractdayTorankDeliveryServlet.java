@@ -1,4 +1,4 @@
-package com.ute.rental.servlet.admin;
+package com.ute.rental.servlet.delivery;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,24 +9,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ute.rental.bo.Contractday;
 import com.ute.rental.bo.Staff;
 import com.ute.rental.dao.ContractDayDAO;
 import com.ute.rental.dao.MethodDAO;
-import com.ute.rental.dao.StaffDAO;
 
 /**
- * Servlet implementation class ListcontractdayServlet
+ * Servlet implementation class ListcontractdayTorankDeliveryServlet
  */
-@WebServlet(name = "listcontractday", urlPatterns = { "/listcontractday" })
-public class ListcontractdayServlet extends HttpServlet {
+@WebServlet(name = "listcontractdayTorankDelivery", urlPatterns = { "/listcontractdayTorankDelivery" })
+public class ListcontractdayTorankDeliveryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListcontractdayServlet() {
+    public ListcontractdayTorankDeliveryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,18 +37,17 @@ public class ListcontractdayServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		String work = "staffdelivery";
-		String action = "normal";
-		String status = request.getParameter("status");
-		ContractDayDAO contractDayDAO  = new ContractDayDAO();
-		StaffDAO dao = new StaffDAO();
-		ArrayList<Contractday> listContractday = MethodDAO.listContractdayParse(contractDayDAO.getAllcontractDayJoin(status));	
-		ArrayList<Staff> lisStaff  = dao.getAllStaffByWorkAndAction(work,action);
+		String title = "Hợp Đồng Đến Hạn";
+		HttpSession session = request.getSession();
+		Staff staff = (Staff) session.getAttribute("staff");
+		int idstaff = staff.getStaffid();
+		ContractDayDAO contractDayDAO = new  ContractDayDAO();
+		ArrayList<Contractday> listContractday = MethodDAO.listContractdayTorankParse(contractDayDAO.getAllcontractDayTorankStaff(idstaff));
 		request.setAttribute("listContractday", listContractday);
-		request.setAttribute("lisStaff", lisStaff);
-		RequestDispatcher dispatcher =
-				this.getServletContext().getRequestDispatcher("/WEB-INF/view/admin/listcontractday.jsp");
-		dispatcher.forward(request, response);	
+		request.setAttribute("title",title);
+		RequestDispatcher dispatcher = 
+					this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listContractdayOutDate.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**

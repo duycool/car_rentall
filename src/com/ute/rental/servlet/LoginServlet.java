@@ -14,10 +14,12 @@ import javax.servlet.http.HttpSession;
 
 
 import com.ute.rental.bo.Custumer;
+import com.ute.rental.bo.Staff;
 import com.ute.rental.bo.Users;
 import com.ute.rental.dao.CustumerDAO;
 import com.ute.rental.dao.MethodDAO;
 import com.ute.rental.dao.PromotionDAO;
+import com.ute.rental.dao.StaffDAO;
 import com.ute.rental.dao.UserDAO;
 
 /**
@@ -79,6 +81,9 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("userNameDelevery", users.getUsername());
 					session.setAttribute("roles", users.getRoles());
 					session.setAttribute("id_user", users.getUserid());
+					StaffDAO dao = new StaffDAO();
+					Staff staff = dao.getStaff(users.getUserid());
+					session.setAttribute("staff", staff);
 					response.setContentType("text/html;charset=UTF-8");
 					request.setCharacterEncoding("UTF-8");
 					response.sendRedirect(request.getContextPath() + "/homeStaffDelivery");

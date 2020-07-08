@@ -56,9 +56,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th>ID Custumer</th>
             <th>Email</th>  
             <th data-breakpoints="xs">TIỀN TRẢ TRƯỚC</th>  
-            <th data-breakpoints="xs">NGÀY THUÊ</th>       
-            <th data-breakpoints="xs">NGÀY TRẢ</th>
-            <th>TỔNG NGÀY</th>
+            <th data-breakpoints="xs">GIỜ THUÊ</th>       
+            <th data-breakpoints="xs">GIỜ TRẢ</th>
+            <th>TỔNG GIỜ THUÊ</th>
             <th>ẢNH XE</th>
             <th>TÊN XE</th>
             <th>TỔNG TIỀN</th> 
@@ -66,27 +66,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th>TÁC VỤ</th>             
           </tr>
         </thead>
-        <c:forEach items="${listContractday}" var="contractday">
+        <c:forEach items="${listcontracthour}" var="contracthour">
         <tbody>
           <tr>
-           <td>${contractday.id_car}</td>          
-            <td>${contractday.custumerid}</td>
-            <td>${contractday.email}</td>  
-            <td>${contractday.deposit}</td>
-            <td>${contractday.dayhire}</td>          
-            <td>${contractday.payday}</td>
-            <td>${contractday.totalday}</td>
-            <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
-            <td>${contractday.nameCar}</td> 
-            <td>${contractday.totalMoney}</td> 
+         	 <td>${contracthour.id_car}</td>          
+            <td>${contracthour.custumerid}</td>
+            <td>${contracthour.email}</td>  
+            <td>${contracthour.deposit}</td>
+            <td>${contracthour.timehire}</td>          
+            <td>${contracthour.paytime}</td>
+            <td>${contracthour.totaltime}</td>
+            <td><img src="images/${contracthour.avatar}" width="170px" height="220px"/></td>
+            <td>${contracthour.nameCar}</td> 
+            <td>${contracthour.totalMoney}</td> 
 			<td> 		    	
            	<div class="dropdown"> 
            	    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      		Chọn
+      			Chọn
    			 </button> 	   			  
     		<div class="dropdown-menu">
     		<c:forEach items="${lisStaff}" var="staff"> 
-     		 <a class="dropdown-item" href="${pageContext.request.contextPath}/updateContractday?idcontract=${contractday.contractid}&staff=${staff.staffid}">${staff.fullname}</a>    		
+     		 <a class="dropdown-item" href="${pageContext.request.contextPath}/updateContracthour?idcontract=${contracthour.contractid}&staff=${staff.staffid}">${staff.fullname}</a>    		
     		</c:forEach>
     		</div>    		
   			</div>  			

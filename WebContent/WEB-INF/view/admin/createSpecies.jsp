@@ -9,8 +9,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 <body>
 <jsp:include page="/WEB-INF/view/templ/headeradmin.jsp"></jsp:include><br>
 <form action="createspecies" method="post" style="margin-top: 100px">
-        <table border="0" width="35%" align="center">
-            <caption><h2>Create Species</h2></caption>
+        <table border="0" width="35%" align="center">      	
+            <caption><h2>Create Species</h2></caption>            
                         <tr>
                 <td width="50%">Name: </td>
                 <td><input type="text" name="name" size="50"/></td>

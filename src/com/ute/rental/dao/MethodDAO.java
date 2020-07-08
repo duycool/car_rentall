@@ -109,7 +109,11 @@ public class MethodDAO {
 		String dateStr = String.valueOf(date);
 		return dateStr;
 	}
-	
+	public static Date NgayhientaiDate() {
+		long millis=System.currentTimeMillis();  
+		java.sql.Date date=new java.sql.Date(millis);
+		return date;
+	}
 	public static boolean checkday(String hireDayStr) {
 		String ngaythangnamhtStr = Ngayhientai();		
 		String [] ngaythangnamht  = ngaythangnamhtStr.split("-");
@@ -157,7 +161,20 @@ public class MethodDAO {
 		String ngay = parseNgaythangnam[2];		
 		return ngay + "/" + thang + "/" + nam;
 	}
-	
+	public static String ParseDateTorankInDatabase(String date) {	
+		String ngaythangnam [] = date.split("\\s");
+		String ngaythangnamStr = ngaythangnam[0];
+		String [] parseNgaythangnam  = ngaythangnamStr.split("-");
+		String nam = parseNgaythangnam[0];
+		String thang = parseNgaythangnam[1];
+		String ngay = parseNgaythangnam[2];	
+		String giophutgiay  = ngaythangnam[1];
+		String parsegiophutgiay[] = giophutgiay.split(":");
+		String gio = parsegiophutgiay[0];
+		String phut = parsegiophutgiay[1];
+		String giay = parsegiophutgiay[2];
+		return "Thời Gian Kết Thúc" + "\t" + ngay + "/" + thang + "/" + nam + "\t"+ "Vào Lúc : " + "\t"+  gio +"giờ" + phut + "phút" + giay + "giây";
+	}
 	public static String ParseTimeInDatabase(String date) {	
 		String ngaythangnam [] = date.split("\\s");
 		String hourminute = ngaythangnam[1];
@@ -175,7 +192,7 @@ public class MethodDAO {
 					if(contractCustumer.getContractid() == contract.getContractid()) {
 						String arr[]  = contract.getStatus().split(" ");						
 						for(String chuoi : arr) {
-							if(chuoi.equals("newRent")) {
+							if(chuoi.equals(null)) {
 								resultNewRent += chuoi;
 							}else if(chuoi.equals("AlreadyPaid")) {
 								AlreadyPaid += chuoi;
@@ -263,8 +280,12 @@ public class MethodDAO {
 			return "Đang Chờ";
 		}else if(status.equals("AlreadyPaid")) {
 			return "Đã Trả";
+		}else if(status.equals("delivered")) {
+			return "Đang Thuê";
+		}else if(status.equals("Approved")) {
+			return "Đã Duyệt";
 		}else {
-			return "Đang giao";
+			return  "Đang Giao";
 		}
 	}
 	public static ArrayList<Contractday> listContractdayParse(ArrayList<Contractday> lisContractday){
@@ -277,50 +298,36 @@ public class MethodDAO {
 		}
 		return listCheck;	
 	}
-	public static boolean checkStatusContractDay(ArrayList<Contractday> listContractday) {		
-		String status = null;	
-		for(Contractday contractday : listContractday) {
-			if(contractday.getStatus().equals("newRent")) {
-				String arr[] = contractday.getStatus().split(" ");
-				for(String chuoi : arr) {
-					status +=chuoi;
-				}				
-			}
+	public static ArrayList<Contractday> listContractdayTorankParse(ArrayList<Contractday> lisContractday){
+		ArrayList<Contractday> listCheck = new ArrayList<Contractday>();
+		for (Contractday contractday : lisContractday) {
+			contractday.setDayhire(MethodDAO.ParseDateInDatabase(contractday.getDayhire()));
+			contractday.setPayday(MethodDAO.ParseDateTorankInDatabase(contractday.getPayday()));
+			contractday.setStatus(MethodDAO.ParseStatusContract(contractday.getStatus()));
+			listCheck.add(contractday);
 		}
-		if(status != null) {
-			return true;
-		}
-		return false;
+		return listCheck;	
 	}
-	public static void main(String[] args)  {		
-//		ContractDayDAO dao = new ContractDayDAO();
-//		ArrayList<Contractday> listcontract = dao.getAllcontractDayJoin();		
-//		for(Contractday contractday : listcontract) {
-//			System.out.println(contractday.getDayhire());
+	
+
+//	public static boolean checkStatusContractDay(ArrayList<Contractday> listContractday) {		
+//		String status = null;	
+//		for(Contractday contractday : listContractday) {
+//			if(contractday.getStatus().equals("newRent")) {
+//				String arr[] = contractday.getStatus().split(" ");
+//				for(String chuoi : arr) {
+//					status +=chuoi;
+//				}				
+//			}
 //		}
-		String chuoi1 = null;
-		String chuoi2 = null;
-		ContractDAO dao = new ContractDAO();
-		ArrayList<Contract> list = dao.getContractCustumer(1);
-		for(Contract contract : list) {
-				String [] arr =  contract.getStatus().split(" ");
-				for(String chuoi : arr) {
-					if(chuoi.equals("newRent")) {
-						chuoi1 += chuoi;
-					}else {
-						chuoi2 += chuoi;
-					}
-				}
-		}
-		if(chuoi1 != null && chuoi2 == null) {
-			System.out.println("Cho phép");
-		}else if(chuoi1 != null && chuoi2 != null) {
-			System.out.println("Khong cho phep");
-		}else if(chuoi1 == null && chuoi2 != null) {
-			System.out.println("Khong cho phép");
-		}else {
-			System.out.println("cho phép");
-		}		
+//		if(status != null) {
+//			return true;
+//		}
+//		return false;
+//	}
+
+	public static void main(String[] args) throws ParseException  {		
+	
 	}
 	
 }

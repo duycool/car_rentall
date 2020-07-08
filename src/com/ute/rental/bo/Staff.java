@@ -8,10 +8,17 @@ public class Staff extends Users {
 	private String phone;
 	private String works;
 	private String email;
+	private String action;
 	
 	
 	
 	
+	public String getAction() {
+		return action;
+	}
+	public void setAction(String action) {
+		this.action = action;
+	}
 	public String getEmail() {
 		return email;
 	}

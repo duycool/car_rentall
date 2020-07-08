@@ -1,6 +1,6 @@
 package com.ute.rental.bo;
 
-public class Users {
+public class Users   {
 	private int userid;
 	private String username;
 	private String passwords;

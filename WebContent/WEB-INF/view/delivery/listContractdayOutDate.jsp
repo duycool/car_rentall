@@ -29,13 +29,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/templ/headeradmin.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/view/templ/headerDelivery.jsp"></jsp:include>
+	
 <section id="main-content">
 	<section class="wrapper">
 		<div class="table-agile-info">
- <div class="panel panel-default">
+	 <div class="panel panel-default">
     <div class="panel-heading">
-    	Hợp Đồng Thuê Theo Ngày
+    	<%= request.getAttribute("title") != null ? request.getAttribute("title") : " " %>
     </div>
                          	<p align="center" style="color: red;"><%= request.getAttribute("message") != null ? request.getAttribute("message") : " " %></p> 
     <div>
@@ -60,10 +61,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th data-breakpoints="xs">NGÀY TRẢ</th>
             <th>TỔNG NGÀY</th>
             <th>ẢNH XE</th>
-            <th>TÊN XE</th>
-            <th>TỔNG TIỀN</th> 
-            <th>NHÂN VIÊN</th>         
-            <th>TÁC VỤ</th>             
+            <th>TÊN XE</th>            
+            <th>TỔNG TIỀN</th>   
+            <th>TRẠNG THÁI</th>     
+            <th>CẬP NHẬT</th>                      
           </tr>
         </thead>
         <c:forEach items="${listContractday}" var="contractday">
@@ -78,28 +79,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td>${contractday.totalday}</td>
             <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
             <td>${contractday.nameCar}</td> 
-            <td>${contractday.totalMoney}</td> 
-			<td> 		    	
-           	<div class="dropdown"> 
-           	    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      		Chọn
-   			 </button> 	   			  
-    		<div class="dropdown-menu">
-    		<c:forEach items="${lisStaff}" var="staff"> 
-     		 <a class="dropdown-item" href="${pageContext.request.contextPath}/updateContractday?idcontract=${contractday.contractid}&staff=${staff.staffid}">${staff.fullname}</a>    		
-    		</c:forEach>
-    		</div>    		
-  			</div>  			
-           	</td>             
-             <td>            
-             	<a href="contractdayPDF?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         
-             </td>                  
+            <td>${contractday.totalMoney}</td>   
+            <td>${contractday.status}</td>         
+            <td><a href="addViolateDelivery?carid=${contractday.id_car}&custumerid=${contractday.custumerid}">Add Vi Phạm</a></td>                        
           </tr>
         </tbody>
         </c:forEach>
 
       </table>
-      <a href="${pageContext.request.contextPath}/homeadmin">Cancel</a>
+      <a href="${pageContext.request.contextPath}/homeStaffDelivery">Cancel</a>
     </div>
   </div>
 </div>

@@ -10,23 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ute.rental.bo.Contractday;
-import com.ute.rental.bo.Staff;
 import com.ute.rental.dao.ContractDayDAO;
 import com.ute.rental.dao.MethodDAO;
-import com.ute.rental.dao.StaffDAO;
+import com.ute.rental.bo.*;
 
 /**
- * Servlet implementation class ListcontractdayServlet
+ * Servlet implementation class ListcontractdayApprovedServlet
  */
-@WebServlet(name = "listcontractday", urlPatterns = { "/listcontractday" })
-public class ListcontractdayServlet extends HttpServlet {
+@WebServlet(name = "listcontractdayApproved", urlPatterns = { "/listcontractdayApproved" })
+public class ListcontractdayApprovedServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListcontractdayServlet() {
+    public ListcontractdayApprovedServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,17 +35,12 @@ public class ListcontractdayServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		String work = "staffdelivery";
-		String action = "normal";
 		String status = request.getParameter("status");
 		ContractDayDAO contractDayDAO  = new ContractDayDAO();
-		StaffDAO dao = new StaffDAO();
 		ArrayList<Contractday> listContractday = MethodDAO.listContractdayParse(contractDayDAO.getAllcontractDayJoin(status));	
-		ArrayList<Staff> lisStaff  = dao.getAllStaffByWorkAndAction(work,action);
 		request.setAttribute("listContractday", listContractday);
-		request.setAttribute("lisStaff", lisStaff);
 		RequestDispatcher dispatcher =
-				this.getServletContext().getRequestDispatcher("/WEB-INF/view/admin/listcontractday.jsp");
+				this.getServletContext().getRequestDispatcher("/WEB-INF/view/admin/listcontractdayApproved.jsp");
 		dispatcher.forward(request, response);	
 	}
 

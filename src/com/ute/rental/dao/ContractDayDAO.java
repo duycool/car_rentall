@@ -162,6 +162,66 @@ public class ContractDayDAO {
 			}
 		}				
 	}
+	
+	public void UpdateStatusContractdayDelivery(int SpeContractid , String status){
+		Connection connection = null;
+		Statement statement = null;
+		String insert = "exec updateStatusContractdayDelivery '"+SpeContractid+"','"+status+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(insert);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}				
+	}
+	
+	public void updateStaffAndContractDelivery(int specontractid,String action,int staffid , String status){
+		Connection connection = null;
+		Statement statement = null;
+		String insert = "exec updateStaffAndContractDelivery '"+specontractid+"','"+action+"','"+staffid+"','"+new java.sql.Date(System.currentTimeMillis())+ " " + new java.sql.Time(new java.util.Date().getTime())+"','"+status+"'";
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate(insert);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}				
+	}
 	public void deleteContractDay(int contractid) {
 		Connection connection = null;
 		Statement statement = null;
@@ -313,6 +373,150 @@ public class ContractDayDAO {
 	}
 		return listcontractday;
 	}
+	public ArrayList<Contractday> getAllcontractDayTorankStaff(int idstaff){
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<Contractday> listcontractday = new ArrayList<Contractday>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("exec contractdayToRankDelivery '"+idstaff+"','delivered'");
+			while(resultset.next()) {
+				listcontractday.add(convertoContractdayAllDelivery(resultset));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(resultset != null) {
+			try {
+				resultset.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+		return listcontractday;
+	}
+	
+	public ArrayList<Contractday> getAllcontractOutDateStaff(int idstaff , String status){
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<Contractday> listcontractday = new ArrayList<Contractday>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("exec contractdayOut '"+idstaff+"','"+status+"'");
+			while(resultset.next()) {
+				listcontractday.add(convertoContractdayAllDelivery(resultset));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(resultset != null) {
+			try {
+				resultset.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+		return listcontractday;
+	}
+	public ArrayList<Contractday> getAllcontractDayByDelivery(int  staffid , String status){
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<Contractday> listcontractday = new ArrayList<Contractday>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("exec listContractdayDelivery '"+staffid+"','"+status+"'");
+			while(resultset.next()) {
+				listcontractday.add(convertoContractdayAllDelivery(resultset));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(resultset != null) {
+			try {
+				resultset.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+		return listcontractday;
+	}
+private Contractday convertoContractdayAllDelivery(ResultSet rs) throws SQLException {
+	Contractday contractday = new Contractday();
+	contractday.setContractid(rs.getInt(1));
+	contractday.setCustumerid(rs.getInt(2));
+	contractday.setId_car(rs.getInt(3));
+	contractday.setEmail(rs.getString(4));
+	contractday.setAdressDelivery(rs.getString(5));
+	contractday.setQuantity(rs.getInt(6));
+	contractday.setDeposit(rs.getInt(7));
+	contractday.setStatus(rs.getString(8));
+	contractday.setDayhire(rs.getString(9));
+	contractday.setPayday(rs.getString(10));
+	contractday.setTotalday(rs.getInt(11));
+	contractday.setNameSpecies(rs.getString(12));	
+	contractday.setAvatar(rs.getString(13));
+	contractday.setNameCar(rs.getString(14));
+	contractday.setTotalMoney(rs.getInt(15));
+	contractday.setSpeContractid(rs.getInt(16));
+	return contractday;
+	}
 private Contractday convertoContractdayAll(ResultSet rs) throws SQLException {
 		Contractday contractday = new Contractday();
 		contractday.setContractid(rs.getInt(1));
@@ -458,11 +662,8 @@ private Contractday convertoContractdayAll(ResultSet rs) throws SQLException {
 	}
 	public static void main(String[] args) {
 		ContractDayDAO contractDayDAO = new ContractDayDAO();
-		ArrayList<Contractday> lisContractdays = contractDayDAO.getAllcontractDayJoin(1);
-		for(Contractday contractday : lisContractdays) {
-			System.out.println(contractday.getAdressDelivery());
-		}
-		
+		contractDayDAO.UpdateStatusContractdayDelivery(4, "delivered");
+		//contractDayDAO.updateStaffAndContractDelivery(4,"normal", 1,"delivered");
 	}
 	
 }

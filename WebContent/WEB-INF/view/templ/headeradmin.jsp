@@ -125,14 +125,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                  <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>QUẢN LÝ HỢP ĐỒNG</span>
+                        <span>HỢP ĐỒNG THUÊ THEO NGÀY</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/listcontractday?status=newRent">Hợp Đồng Thuê Theo Ngày Mới Thuê</a></li>
-                          <li><a href="${pageContext.request.contextPath}/listcontractday?status=delivery">Hợp Đồng Thuê Theo Ngày</a></li>
-                         <li><a href="${pageContext.request.contextPath}/listcontracthour">Hợp Đồng Thuê Theo Giờ</a></li>                   
+                         <li><a href="${pageContext.request.contextPath}/listcontractday?status=newRent">MỚI THUÊ</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayApproved?status=Approved">ĐÃ DUYỆT</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayApproved?status=delivery">ĐANG GIAO</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayApproved?status=delivered">ĐÃ GIAO</a></li>  
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthour">QUÁ HẠN</a></li>                      
                     </ul>
-                </li>                   
+                </li>
+                  <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>HỢP ĐỒNG THUÊ THEO GIỜ</span>
+                    </a>
+                    <ul class="sub">
+                         <li><a href="${pageContext.request.contextPath}/listcontracthour?status=newRent">Mới Thuê</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=Approved">ĐÃ DUYỆT</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivery">ĐANG GIAO</a></li>    
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivered">ĐÃ GIAO</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>                
+                    </ul>
+                </li>                    
                  <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>

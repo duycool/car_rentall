@@ -52,7 +52,47 @@ public class StaffDAO {
 		}
 		return liststaff;	
 	}
-
+	public ArrayList<Staff> getAllStaffByWorkAndAction(String work,String action){
+		Connection  connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<Staff> liststaff = new ArrayList<Staff>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("Select * from staff where works='"+work+"'and action='"+action+"'");
+			while(resultset.next()) {
+				liststaff.add(convertoStaff(resultset));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return liststaff;	
+	}
 	public ArrayList<Staff> getAllStaff(){
 		Connection  connection = null;
 		Statement statement = null;
@@ -103,6 +143,7 @@ public class StaffDAO {
 		staff.setPhone(rs.getString(5));
 		staff.setWorks(rs.getString(6));
 		staff.setEmail(rs.getString(7));
+		staff.setAction(rs.getString(8));
 		return staff;
 	}
 	
@@ -254,7 +295,7 @@ public class StaffDAO {
 	public void AddStaff (Staff staff){
 		Connection connection = null;
 		Statement statement = null;
-		String insert = "exec addStaff N'"+staff.getFullname()+"',N'"+staff.getAddress()+"','"+staff.getPhone()+"','"+staff.getWorks()+"','"+staff.getEmail()+"','"+staff.getPasswords()+"','"+staff.getRoles()+"'";
+		String insert = "exec addStaff N'"+staff.getFullname()+"',N'"+staff.getAddress()+"','"+staff.getPhone()+"','"+staff.getWorks()+"','"+staff.getEmail()+"','"+staff.getPasswords()+"','"+staff.getRoles()+"','"+staff.getAction()+"'";
 		try {
 			connection = ConnectionFactory.getConnection();
 			statement = connection.createStatement();
