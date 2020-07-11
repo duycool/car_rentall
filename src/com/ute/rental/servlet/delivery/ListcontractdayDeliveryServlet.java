@@ -39,7 +39,7 @@ public class ListcontractdayDeliveryServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String status = request.getParameter("status");
 		if(status.equals("Approved")) {
-			String title = "Hợp Đồng Thuê Theo Giờ Đang Giao";	
+			String title = "Hợp Đồng Thuê Theo Ngày Đã Duyệt";	
 			HttpSession session = request.getSession();
 			Staff staff = (Staff) session.getAttribute("staff");
 			ContractDayDAO dao = new ContractDayDAO();
@@ -47,31 +47,30 @@ public class ListcontractdayDeliveryServlet extends HttpServlet {
 			request.setAttribute("listContractday", listContractday);
 			request.setAttribute("title", title);
 			RequestDispatcher dispatcher = 
-							this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdayApproved.jsp");
+							this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdayDelivery.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			HttpSession session = request.getSession();
 			Staff staff = (Staff) session.getAttribute("staff");
 			if(status.equals("delivery")) {
-				String title = "Hợp Đồng Thuê Theo Giờ Đang Giao";			
+				String title = "Hợp Đồng Thuê Theo Ngày Đang Giao";			
 				ContractDayDAO dao = new ContractDayDAO();
 				ArrayList<Contractday> listContractday = MethodDAO.listContractdayParse(dao.getAllcontractDayByDelivery(staff.getStaffid(),status));
 				request.setAttribute("listContractday", listContractday);
 				request.setAttribute("title", title);
 				RequestDispatcher dispatcher = 
-								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdayApproved.jsp");
+								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdayDelivery.jsp");
 				dispatcher.forward(request, response);
-			}else {
+			}else{
 				String title = "Hợp Đồng Thuê Theo Ngày Đã Giao";			
 				ContractDayDAO dao = new ContractDayDAO();
 				ArrayList<Contractday> listContractday = MethodDAO.listContractdayParse(dao.getAllcontractDayByDelivery(staff.getStaffid(),status));
 				request.setAttribute("listContractday", listContractday);
 				request.setAttribute("title", title);
 				RequestDispatcher dispatcher = 
-								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listContractdayDelivery.jsp");
+								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdayDelivery.jsp");
 				dispatcher.forward(request, response);
-			}
-			
+			}	
 		}
 		
 	}

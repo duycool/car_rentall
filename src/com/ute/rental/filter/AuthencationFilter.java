@@ -1,4 +1,4 @@
-package com.ute.retal.filter;
+package com.ute.rental.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;

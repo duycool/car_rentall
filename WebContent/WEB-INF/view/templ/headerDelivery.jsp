@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
                          <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=Approved">Hợp Đồng Thuê Theo Ngày Đã Duyệt</a></li>                          
-                         <li><a href="${pageContext.request.contextPath}/findcontract?status=Delivering">Hợp Đồng Thuê Theo Giờ Đã Duyệt</a></li>                                       
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=Approved">Hợp Đồng Thuê Theo Giờ Đã Duyệt</a></li>                                       
                     </ul>
                 </li> 
                    <li class="sub-menu">
@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
                                <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=delivery">Hợp Đồng Thuê Theo Ngày Đang Giao</a></li>
-                                <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=delivery">Hợp Đồng Thuê Theo Giờ Đang Giao</a></li>
+                                <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=delivery">Hợp Đồng Thuê Theo Giờ Đang Giao</a></li>
                     </ul>
                 </li> 
                <li class="sub-menu">
@@ -106,9 +106,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
                                          <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=delivered">Hợp Đồng Thuê Theo Ngày Đã Giao</a></li>
-                                          <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=delivery">Hợp Đồng Thuê Theo Giờ Đã Giao</a></li>
+                                          <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=delivered">Hợp Đồng Thuê Theo Giờ Đã Giao</a></li>
                     </ul>
                 </li>   
+                    <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>HỢP ĐỒNG ĐÃ TRẢ</span>
+                    </a>
+                    <ul class="sub">
+                                          <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=AlreadyPaid">Hợp Đồng Thuê Theo Ngày Đã Trả</a></li>
+                                          <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=AlreadyPaid">Hợp Đồng Thuê Theo Giờ Đã Trả</a></li>
+                    </ul>
+                </li> 
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>

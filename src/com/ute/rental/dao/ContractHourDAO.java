@@ -40,6 +40,68 @@ public class ContractHourDAO   {
 			}
 		}				
 	}
+	public ArrayList<ContractHour> getAllcontractHourByDelivery(int  staffid , String status){
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<ContractHour> listcontracthour = new ArrayList<ContractHour>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("exec listContractHourDelivery '"+staffid+"','"+status+"'");
+			while(resultset.next()) {
+				listcontracthour.add(convertoContractHourAllDelivery(resultset));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(resultset != null) {
+			try {
+				resultset.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+		return listcontracthour;
+	}
+	private ContractHour convertoContractHourAllDelivery(ResultSet rs) throws SQLException {
+		ContractHour contractHour = new ContractHour();
+		contractHour.setContractid(rs.getInt(1));
+		contractHour.setCustumerid(rs.getInt(2));
+		contractHour.setId_car(rs.getInt(3));
+		contractHour.setEmail(rs.getString(4));
+		contractHour.setAdressDelivery(rs.getString(5));
+		contractHour.setQuantity(rs.getInt(6));
+		contractHour.setDeposit(rs.getInt(7));
+		contractHour.setStatus(rs.getString(8));
+		contractHour.setDayhire(rs.getString(9));
+		contractHour.setTimehire(rs.getString(10));
+		contractHour.setPaytime(rs.getString(11));
+		contractHour.setTotaltime(rs.getString(12));
+		contractHour.setNameSpecies(rs.getString(13));	
+		contractHour.setAvatar(rs.getString(14));
+		contractHour.setNameCar(rs.getString(15));
+		contractHour.setTotalMoney(rs.getInt(16));
+		contractHour.setSpeContractid(rs.getInt(17));
+		return contractHour;
+	}
 	public ContractHour getContractHour(int contractid) {
 		Connection connection = null;
 		Statement statement = null;

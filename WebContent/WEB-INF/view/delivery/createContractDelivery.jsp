@@ -15,13 +15,17 @@
             		<td><input type="hidden" name="idSpecies" value="${speContractid}"></td>
             	</tr>
                <tr>
-                <td width="50%">ĐANG GIAO: </td>
+             <td width="50%">ĐANG GIAO: </td>
                 <td><input  type="radio" name="status" value="delivery"></td>
            	 </tr>    
-           	    <tr>
+           	 <tr>
                 <td width="50%">ĐÃ GIAO  : </td>
                 <td><input  type="radio" name="status" value="delivered"></td>
-           	 </tr>               
+           	 </tr>   
+           	 	 <tr>
+             <td width="50%">ĐÃ TRẢ  : </td>
+                <td><input  type="radio" name="status" value="AlreadyPaid"></td>
+           	 </tr>             
             <tr>
                 <td colspan="2" align="center"><input type="submit" value="submit"/></td>
             </tr>

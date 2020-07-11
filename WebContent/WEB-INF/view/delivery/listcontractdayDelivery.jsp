@@ -61,9 +61,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th data-breakpoints="xs">NGÀY TRẢ</th>
             <th>TỔNG NGÀY</th>
             <th>ẢNH XE</th>
-            <th>TÊN XE</th>            
-            <th>TỔNG TIỀN</th>   
-            <th>TRẠNG THÁI</th>                         
+            <th>TÊN XE</th>
+            <th>TỔNG TIỀN</th>          
+            <th>CẬP NHẬP</th>             
           </tr>
         </thead>
         <c:forEach items="${listContractday}" var="contractday">
@@ -78,8 +78,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td>${contractday.totalday}</td>
             <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
             <td>${contractday.nameCar}</td> 
-            <td>${contractday.totalMoney}</td>   
-            <td>${contractday.status}</td>                               
+            <td>${contractday.totalMoney}</td>                    
+             <td>            
+             	<form action="deliveryContractday" method="get">
+             			<input type="hidden" value="${contractday.speContractid}" name="speContractid"> 
+             			<input class="btn btn-primary" type="submit" value="CẬP NHẬP">
+             	</form>        	         
+             </td>                  
           </tr>
         </tbody>
         </c:forEach>

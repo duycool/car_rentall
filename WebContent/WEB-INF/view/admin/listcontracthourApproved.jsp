@@ -61,8 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th>TỔNG GIỜ THUÊ</th>
             <th>ẢNH XE</th>
             <th>TÊN XE</th>
-            <th>TỔNG TIỀN</th> 
-            <th>NHÂN VIÊN</th>         
+            <th>TỔNG TIỀN</th>       
             <th>TÁC VỤ</th>             
           </tr>
         </thead>

@@ -15,6 +15,7 @@ encoding//src/com/ute/rental/servlet/admin/ViewpromotionAdminServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/delivery/ListcontractdayDeliveryServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/delivery/ListcontractdayOutDayDeliveryServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/delivery/ListcontractdayTorankDeliveryServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/delivery/ListcontracthourDeliveryServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/user/ChangePassUserServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/user/CommentServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/user/ContractDayServlet.java=UTF-8

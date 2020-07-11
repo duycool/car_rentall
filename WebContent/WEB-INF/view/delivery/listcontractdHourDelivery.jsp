@@ -58,30 +58,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th>Email</th>  
             <th data-breakpoints="xs">TIỀN TRẢ TRƯỚC</th>  
             <th data-breakpoints="xs">NGÀY THUÊ</th>       
-            <th data-breakpoints="xs">NGÀY TRẢ</th>
-            <th>TỔNG NGÀY</th>
+            <th data-breakpoints="xs">GIỜ THUÊ</th>
+             <th data-breakpoints="xs">GIỜ TRẢ</th>
+            <th>TỔNG GIỜ THUÊ</th>
             <th>ẢNH XE</th>
             <th>TÊN XE</th>
             <th>TỔNG TIỀN</th>          
-            <th>CẬP NHẬP</th>             
+            <th>TÁC VỤ</th>             
           </tr>
         </thead>
-        <c:forEach items="${listContractday}" var="contractday">
+        <c:forEach items="${listcontracthour}" var="contracthour">
         <tbody>
           <tr>
-           <td>${contractday.id_car}</td>          
-            <td>${contractday.custumerid}</td>
-            <td>${contractday.email}</td>  
-            <td>${contractday.deposit}</td>
-            <td>${contractday.dayhire}</td>          
-            <td>${contractday.payday}</td>
-            <td>${contractday.totalday}</td>
-            <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
-            <td>${contractday.nameCar}</td> 
-            <td>${contractday.totalMoney}</td>                    
+           <td>${contracthour.id_car}</td>          
+            <td>${contracthour.custumerid}</td>
+            <td>${contracthour.email}</td>  
+            <td>${contracthour.deposit}</td>
+            <td>${contracthour.dayhire}</td>          
+            <td>${contracthour.timehire}</td>
+            <td>${contracthour.paytime}</td>
+            <td>${contracthour.totaltime}</td>
+            <td><img src="images/${contracthour.avatar}" width="170px" height="220px"/></td>
+            <td>${contracthour.nameCar}</td> 
+            <td>${contracthour.totalMoney}</td>                    
              <td>            
              	<form action="deliveryContractday" method="get">
-             			<input type="hidden" value="${contractday.speContractid}" name="speContractid"> 
+             			<input type="hidden" value="${contracthour.speContractid}" name="speContractid"> 
              			<input class="btn btn-primary" type="submit" value="GIAO">
              	</form>        	         
              </td>                  
