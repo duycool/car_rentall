@@ -162,12 +162,13 @@ public class PromotionDAO {
 	}
 	private Promotion convertoPromotionJoin(ResultSet rs) throws SQLException {
 		Promotion promotion = new Promotion();
-		promotion.setAvatar(rs.getString(1));
-		promotion.setNameCar(rs.getString(2));
-		promotion.setNameManufac(rs.getString(3));
-		promotion.setStarday(rs.getString(4));
-		promotion.setEndDay(rs.getString(5));
-		promotion.setTitile(rs.getString(6));
+		promotion.setIdpromotion(rs.getInt(1));
+		promotion.setAvatar(rs.getString(2));
+		promotion.setNameCar(rs.getString(3));
+		promotion.setNameManufac(rs.getString(4));
+		promotion.setStarday(rs.getString(5));
+		promotion.setEndDay(rs.getString(6));
+		promotion.setTitile(rs.getString(7));
 		return promotion;
 	}
 

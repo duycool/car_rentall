@@ -39,7 +39,7 @@ public class ListcontracthourDeliveryServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String status = request.getParameter("status");
 		if(status.equals("Approved")) {
-			String title = "Hợp Đồng Thuê Theo Giờ Đang Giao";	
+			String title = "Hợp Đồng Thuê Theo Giờ Đã Duyệt";	
 			HttpSession session = request.getSession();
 			Staff staff = (Staff) session.getAttribute("staff");
 			ContractHourDAO dao = new ContractHourDAO();
@@ -47,7 +47,7 @@ public class ListcontracthourDeliveryServlet extends HttpServlet {
 			request.setAttribute("listcontracthour", listcontracthour);
 			request.setAttribute("title", title);
 			RequestDispatcher dispatcher = 
-							this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdHourDelivery.jsp");
+							this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listContracthourApproved.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			HttpSession session = request.getSession();
@@ -68,7 +68,7 @@ public class ListcontracthourDeliveryServlet extends HttpServlet {
 				request.setAttribute("listcontracthour", listcontracthour);
 				request.setAttribute("title", title);
 				RequestDispatcher dispatcher = 
-								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdHourDelivery.jsp");
+								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listContractHourDelivered.jsp");
 				dispatcher.forward(request, response);
 			}else {
 				String title = "Hợp Đồng Thuê Theo Giờ Đã Trả";			
@@ -77,7 +77,7 @@ public class ListcontracthourDeliveryServlet extends HttpServlet {
 				request.setAttribute("listcontracthour", listcontracthour);
 				request.setAttribute("title", title);
 				RequestDispatcher dispatcher = 
-								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listcontractdHourDelivery.jsp");
+								this.getServletContext().getRequestDispatcher("/WEB-INF/view/delivery/listContracthourAlreadyPaid.jsp");
 				dispatcher.forward(request, response);
 				}
 			}

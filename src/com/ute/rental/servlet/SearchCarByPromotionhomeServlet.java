@@ -45,12 +45,7 @@ public class SearchCarByPromotionhomeServlet extends HttpServlet {
 		String title = MethodDAO.ParsePhantram(titleStr);
 		int idpromotion = dao.getPromotionByTitle(title);		
 		PromotionDetailsDAO promotionDetailsDAO = new PromotionDetailsDAO();				
-		//List<PromotionDetails> listDetails = promotion.getPromotionDetails();	
-		ArrayList<Car> listcarId = promotionDetailsDAO.getListIdCarPromotion(idpromotion);	
-		ArrayList<Car> listcar = new ArrayList<Car>();
-		for(Car car : listcarId) {
-			listcar.add(car);
-		}
+		ArrayList<Promotion> listcar = promotionDetailsDAO.ListCarPromotion(idpromotion);	
 		request.setAttribute("listcar",listcar);
 		RequestDispatcher dispatcher = 
 						this.getServletContext().getRequestDispatcher("/WEB-INF/view/homepage.jsp");

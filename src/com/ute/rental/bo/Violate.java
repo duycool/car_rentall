@@ -5,6 +5,14 @@ public class Violate extends Contract{
 		private String nameViolate;
 		private int priceViolate;
 		private String reason;
+		private int staffid;
+		
+		public int getStaffid() {
+			return staffid;
+		}
+		public void setStaffid(int staffid) {
+			this.staffid = staffid;
+		}
 		public String getReason() {
 			return reason;
 		}

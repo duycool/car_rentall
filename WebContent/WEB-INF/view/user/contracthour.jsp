@@ -265,7 +265,7 @@
                             </div> 
                             </div>
                         <div class="row">
-                            <label class="label col-md-2 control-label"  >ĐịaChỉGiao:</label>
+                            <label class="label col-md-2 control-label"  >ĐịaChỉGiaoXe:</label>
                             <div class="col-md-10">
                                 <select  class="form-control"  name="address" >
                                 	<option value="ofyou">Địa Chỉ Của Bạn</option>

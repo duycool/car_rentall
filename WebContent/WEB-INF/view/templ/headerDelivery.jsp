@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>HỢP ĐỒNG CẦN GIAO</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=Approved">Hợp Đồng Thuê Theo Ngày Đã Duyệt</a></li>                          
+                         <li><a href="${pageContext.request.contextPath}/listContractdayDeliveryy?status=Approved">Hợp Đồng Thuê Theo Ngày Đã Duyệt</a></li>                          
                          <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=Approved">Hợp Đồng Thuê Theo Giờ Đã Duyệt</a></li>                                       
                     </ul>
                 </li> 
@@ -95,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>HỢP ĐỒNG ĐANG GIAO</span>
                     </a>
                     <ul class="sub">
-                               <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=delivery">Hợp Đồng Thuê Theo Ngày Đang Giao</a></li>
+                               <li><a href="${pageContext.request.contextPath}/listContractdayDeliveryy?status=delivery">Hợp Đồng Thuê Theo Ngày Đang Giao</a></li>
                                 <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=delivery">Hợp Đồng Thuê Theo Giờ Đang Giao</a></li>
                     </ul>
                 </li> 
@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>HỢP ĐỒNG ĐÃ GIAO</span>
                     </a>
                     <ul class="sub">
-                                         <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=delivered">Hợp Đồng Thuê Theo Ngày Đã Giao</a></li>
+                                         <li><a href="${pageContext.request.contextPath}/listContractdayDeliveryy?status=delivered">Hợp Đồng Thuê Theo Ngày Đã Giao</a></li>
                                           <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=delivered">Hợp Đồng Thuê Theo Giờ Đã Giao</a></li>
                     </ul>
                 </li>   
@@ -115,7 +115,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>HỢP ĐỒNG ĐÃ TRẢ</span>
                     </a>
                     <ul class="sub">
-                                          <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=AlreadyPaid">Hợp Đồng Thuê Theo Ngày Đã Trả</a></li>
+                                          <li><a href="${pageContext.request.contextPath}/listContractdayDeliveryy?status=AlreadyPaid">Hợp Đồng Thuê Theo Ngày Đã Trả</a></li>
                                           <li><a href="${pageContext.request.contextPath}/listcontracthourDelivery?status=AlreadyPaid">Hợp Đồng Thuê Theo Giờ Đã Trả</a></li>
                     </ul>
                 </li> 
@@ -125,8 +125,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>HỢP ĐỒNG ĐẾN HẠN</span>
                     </a>
                     <ul class="sub">
-                                         <li><a href="${pageContext.request.contextPath}/listcontractdayTorankDelivery">Hợp Đồng Thuê Theo Ngày Đến Hạng</a></li>
-                                          <li><a href="${pageContext.request.contextPath}/listcontractdayDelivery?status=delivery">Hợp Đồng Thuê Theo Giờ Đã Giao</a></li>
+                                         <li><a href="${pageContext.request.contextPath}/listcontractdayTorankDelivery">Hợp Đồng Thuê Theo Ngày Đến Hạn</a></li>
+                                         <li><a href="${pageContext.request.contextPath}/listcontracthourTorankDelivery">Hợp Đồng Thuê Theo Giờ Đến Hạn</a></li>
                     </ul>
                 </li>                             
                   <li>                   
@@ -136,15 +136,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                      <ul class="sub">
                            <li><a href="${pageContext.request.contextPath}/listcontractdayOutDayDelivery">Hợp Đồng Thuê Theo Ngày Quá Hạn</a></li>
+                           <li><a href="${pageContext.request.contextPath}/listcontracthourOuthourDelivery">Hợp Đồng Thuê Theo Giờ Quá Hạn</a></li>
                     </ul>
                 </li>    
-                       <li>                   
-                    <a href="${pageContext.request.contextPath}/contractexpires">
+                  <li>   
+                  	<a href="${pageContext.request.contextPath}/listcontractviolateDelivery">                               
                         <i class="fa fa-bullhorn"></i>
-                        <span>DANH SÁCH HỢP ĐỒNG BỊ VI PHẠM</span>                     
-                    </a>
+                        <span>DANH SÁCH KHÁCH HÀNG VI PHẠM HỢP ĐỒNG</span> 
+                     </a>                                    
                      <ul class="sub">
-                           <li><a href="${pageContext.request.contextPath}/listcontractdayOutDayDelivery">Hợp Đồng Thuê Theo Ngày Quá Hạn</a></li>
+                           <li><a href="${pageContext.request.contextPath}/listcontractviolateDelivery">DANH SÁCH</a></li>
                     </ul>
                 </li>                
             </ul>      

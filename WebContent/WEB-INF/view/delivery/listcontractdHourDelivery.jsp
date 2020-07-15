@@ -53,8 +53,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         
         <thead>
           <tr>
-            <th data-breakpoints="xs">ID XE</th>
-            <th>ID Custumer</th>
             <th>Email</th>  
             <th data-breakpoints="xs">TIỀN TRẢ TRƯỚC</th>  
             <th data-breakpoints="xs">NGÀY THUÊ</th>       
@@ -69,9 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </thead>
         <c:forEach items="${listcontracthour}" var="contracthour">
         <tbody>
-          <tr>
-           <td>${contracthour.id_car}</td>          
-            <td>${contracthour.custumerid}</td>
+          <tr>         
             <td>${contracthour.email}</td>  
             <td>${contracthour.deposit}</td>
             <td>${contracthour.dayhire}</td>          
@@ -81,12 +77,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td><img src="images/${contracthour.avatar}" width="170px" height="220px"/></td>
             <td>${contracthour.nameCar}</td> 
             <td>${contracthour.totalMoney}</td>                    
-             <td>            
-             	<form action="deliveryContractday" method="get">
+            <td>            
+             	<form action="deliveryContractday" method="post">
              			<input type="hidden" value="${contracthour.speContractid}" name="speContractid"> 
-             			<input class="btn btn-primary" type="submit" value="GIAO">
-             	</form>        	         
-             </td>                  
+             		<table border="0" width="35%" align="center">            
+              	 <tr>
+             	 <td width="50%">ĐÃGIAO: </td>
+                <td><input  type="radio" name="status" value="delivered"></td>
+           	 	</tr>              	           
+           		 <tr>
+                <td colspan="2" align="center"><input   class="btn btn-primary"  type="submit" value="submit"/></td>
+            	</tr>
+        		</table>            		
+             	</form> 
+             	<a href="addViolateDelivery?carid=${contracthour.id_car}&custumerid=${contracthour.custumerid}">Add Vi Phạm</a>            	         
+             </td>                 
           </tr>
         </tbody>
         </c:forEach>

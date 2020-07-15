@@ -128,12 +128,12 @@
                             </div>
                         </div>      
                         <div class="row">
-                            <label class="label col-md-2 control-label"  >ĐịaChỉ:</label>
-                            <div class="col-md-10">
-                                <select  class="form-control"  name="address" >
+                            <label class="label col-md-2 control-label"  >ĐịaChỉGiaoXe:</label>
+                            <div class="col-md-10">                              
+                                  <select  class="form-control"  name="address" >
                                 	<option value="ofyou">Địa Chỉ Của Bạn</option>
                                 	<option value="other">Địa Chỉ Khác</option>
-                                </select>
+                               	 </select>
                             </div>
                         </div>            
                         <p style="color: red;"><%= request.getAttribute("mess") != null ? request.getAttribute("mess") : " " %></p>

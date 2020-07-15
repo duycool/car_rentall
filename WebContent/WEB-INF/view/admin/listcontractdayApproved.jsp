@@ -81,7 +81,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td>${contractday.totalMoney}</td>     
             <td>${contractday.status}</td>         
              <td>            
-             	<a href="contractdayPDF?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         
+             	<a href="printBillday?contractid=${contractday.contractid}">InHóaĐơn</a>
+             	<a class="btn-primary primary" href="addViolateAdmin?carid=${contractday.id_car}&custumerid=${contractday.custumerid}">AddViPhạm</a>            	         
              </td>                  
           </tr>
         </tbody>

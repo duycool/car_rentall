@@ -39,8 +39,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="${pageContext.request.contextPath}/homeadmin" class="logo">
-      	MANAGER
+    <a href="${pageContext.request.contextPath}/homeStaffManage" class="logo">
+      	Manager 
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
@@ -67,103 +67,114 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </header>
 
 <aside>
-
-
 <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="${pageContext.request.contextPath}/homeadmin">
+                    <a class="active" href="${pageContext.request.contextPath}/homeStaffManage">
                         <i class="fa fa-dashboard"></i>
-                        <span>Trang chủ</span>
+                        <span>TRANG CHỦ</span>
                     </a>
                 </li>
-               
-                <li class="sub-menu">
+                    <li class="sub-menu">
                     <a >
                         <i class="fa fa-book"></i>
                         <span>QUẢN LÝ KHÁCH HÀNG</span>
                     </a>
                     <ul class="sub">                    
-                          <li><a href="${pageContext.request.contextPath}/listCustumer">KHÁCH HÀNG</a></li>                                             
+                          <li><a href="${pageContext.request.contextPath}/listCustumerManager">KHÁCH HÀNG</a></li>                                             
                     </ul>
-                </li>
+                </li>         
                      <li class="sub-menu">
-                    <a class="active" href="javascript:;">
+                    <a  href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>QUẢN LÝ XE</span>
                     </a>
                     <ul class="sub">                      
-                       		 <li><a href="${pageContext.request.contextPath}/createcar">THÊM XE</a></li>
-                    		<li><a href="${pageContext.request.contextPath}/listCaradmin">QUẢN LÝ XE</a></li>         	
+                       		<li><a href="${pageContext.request.contextPath}/createcarManager">THÊM XE</a></li>
+                    		<li><a href="${pageContext.request.contextPath}/listCarManager">QUẢN LÝ XE</a></li>   
+                    		<li><a href="${pageContext.request.contextPath}/promotionManager">XE VỪA ĐƯỢC THÊM VÀO GIẢM GIÁ</a></li>           	
                     </ul>
                 </li>   
                  <li class="sub-menu">
-                    <a class="active" href="javascript:;">
+                    <a  href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>QUẢN LÝ LOẠI</span>
                     </a>
                     <ul class="sub">
-                      		<li><a href="${pageContext.request.contextPath}/createspecies">Thêm Loại</a></li>                       
-                    		<li><a href="${pageContext.request.contextPath}/listspecies">Tất Cả Lọai</a></li>     		
+                      		<li><a href="${pageContext.request.contextPath}/createspeciesManager">Thêm Loại</a></li>                       
+                    		<li><a href="${pageContext.request.contextPath}/listspeciesManager">Tất Cả Lọai</a></li>      		
                     </ul>
                 </li> 
                       <li class="sub-menu">
-                    <a class="active" href="javascript:;">
+                    <a  href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>QUẢN LÝ HÃNG</span>
                     </a>
                     <ul class="sub">           
-                       		<li><a href="${pageContext.request.contextPath}/createManufact">Thêm Hãng</a></li>
-                    		<li><a href="${pageContext.request.contextPath}/listmanufact">Tất Cả Hãng</a></li>      		
+                       	<li><a href="${pageContext.request.contextPath}/createManufactManager">Thêm Hãng</a></li>
+                    		<li><a href="${pageContext.request.contextPath}/listmanufactManager">Tất Cả Hãng</a></li>         		
                     </ul>
                 </li> 
                  <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Quản lý hợp đồng Theo ngày</span>
+                        <span>HỢP ĐỒNG THUÊ THEO NGÀY</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/listcontract">Hợp Đồng Thuê Theo Ngày</a></li>
-                        <li><a href="${pageContext.request.contextPath}/findcontract?status=Waiting">Hợp Đồng Đang chờ</a></li>
-                        <li><a href="${pageContext.request.contextPath}/findcontract?status=Browser">Hợp Đồng Đã Duyệt</a></li>
-                         <li><a href="${pageContext.request.contextPath}/findcontract?status=Delivering">Hợp Đồng Đang giao</a></li>                         
-                         <li><a href="${pageContext.request.contextPath}/findcontract?status=Currently">Hợp Đồng Đang Thuê</a></li>
-                        <li><a href="${pageContext.request.contextPath}/findcontract?status=AlreadyPaid">Hợp Đồng Đã trã</a></li>
+                       <li><a href="${pageContext.request.contextPath}/listcontractdayManager?status=newRent">MỚI THUÊ</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayManagerApproved?status=Approved">ĐÃ DUYỆT</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayManagerApproved?status=delivery">ĐANG GIAO</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayManagerApproved?status=delivered">ĐÃ GIAO</a></li>  
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayManagerApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontractdaytorankAdmin">ĐẾN HẠN</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayOutAdmin">QUÁ HẠN</a></li>                        
                     </ul>
-                </li> 
+                </li>
                   <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Quản lý hợp đồng Thuê theo giờ</span>
+                        <span>HỢP ĐỒNG THUÊ THEO GIỜ</span>
                     </a>
                     <ul class="sub">
-                           <li><a href="${pageContext.request.contextPath}/listcontracthour">Hợp Đồng Thuê Theo Giờ</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthour?status=newRent">Mới Thuê</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=Approved">ĐÃ DUYỆT</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivery">ĐANG GIAO</a></li>    
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivered">ĐÃ GIAO</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>    
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourtorankAdmin">ĐẾN HẠN</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourOutAdmin">QUÁ HẠN</a></li>                                   
                     </ul>
-                </li>              
-                  <li class="sub-menu">
+                </li>                    
+                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Doanh thu</span>
+                        <span>DOANH THU CỬA HÀNG</span>
                     </a>
                     <ul class="sub">
                          <li><a href="${pageContext.request.contextPath}/sumtotal?status=CurrentlyHiring">Thu nhập ước tính</a></li>
                         <li><a href="${pageContext.request.contextPath}/sumtotal?status=AlreadyPaid">Thu nhập đạt được</a></li>            
                     </ul>
-                </li>    
-                  <li>                   
-                    <a href="${pageContext.request.contextPath}/contractexpires">
-                        <i class="fa fa-bullhorn"></i>
-                        <span>Hợp đồng quá hạn</span>
-                    </a>
                 </li> 
-                   <li>                   
-                    <a href="${pageContext.request.contextPath}/viewpromotion">
+                      <li class="sub-menu">
+                    <a href="javascript:;">
                         <i class="fa fa-bullhorn"></i>
-                        <span>Danh sách Thêm giảm giá</span>
+                        <span>GIẢM GIÁ</span>
                     </a>
-                </li>      
+                    <ul class="sub">                       
+                          <li><a href="${pageContext.request.contextPath}/viewpromotionManager">Danh sách xe giảm giá</a></li>              
+                    </ul>
+                </li>  
+                        <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>DANH SÁCH KHÁCH HÀNG VI PHẠM HỢP ĐỒNG</span>
+                    </a>
+                    <ul class="sub">                       
+                         <li><a href="${pageContext.request.contextPath}/listcontractViolateManager">DANH SÁCH VI PHẠM HỢP ĐỒNG</a></li>            
+                    </ul>
+                </li>                              
             </ul>      
            </div>
     </div>

@@ -52,7 +52,62 @@ public class CustumerDAO {
 		}
 		return listcustumer;	
 	}
+	public ArrayList<Custumer> getAllCustumerJoin(){
+		Connection  connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<Custumer> listcustumer = new ArrayList<Custumer>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("exec listCustumerJoin");
+			while(resultset.next()) {
+				listcustumer.add(convertoCustumerJoin(resultset));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return listcustumer;	
+	}
 
+	private Custumer convertoCustumerJoin(ResultSet rs) throws SQLException {
+		Custumer custumer = new Custumer();
+		custumer.setCustumerid(rs.getInt(1));
+		custumer.setUserid(rs.getInt(2));
+		custumer.setFullnName(rs.getString(3));
+		custumer.setIdcard(rs.getString(4));
+		custumer.setDateBrith(rs.getString(5));
+		custumer.setEmail(rs.getString(6));
+		custumer.setAddress(rs.getString(7));
+		custumer.setPhoneNumber(rs.getString(8));
+		custumer.setUsername(rs.getString(9));
+		custumer.setRoles(rs.getString(10));
+		return custumer;
+	}
 	private Custumer convertoCustumer(ResultSet rs) throws SQLException {
 		Custumer custumer = new Custumer();
 		custumer.setCustumerid(rs.getInt(1));

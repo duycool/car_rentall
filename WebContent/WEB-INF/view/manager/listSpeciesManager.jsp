@@ -22,23 +22,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<jsp:include page="/WEB-INF/view/templ/headerDelivery.jsp"></jsp:include>
-	
+	<jsp:include page="/WEB-INF/view/templ/headerManage.jsp"></jsp:include>
 <section id="main-content">
 	<section class="wrapper">
 		<div class="table-agile-info">
-	 <div class="panel panel-default">
+ <div class="panel panel-default">
     <div class="panel-heading">
-    	<%= request.getAttribute("title") != null ? request.getAttribute("title") : " " %>
+    	Tất Cả Loại
     </div>
-                         	<p align="center" style="color: red;"><%= request.getAttribute("message") != null ? request.getAttribute("message") : " " %></p> 
     <div>
       <table class="table" ui-jq="footable" ui-options='{
         "paging": {
@@ -50,47 +44,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         "sorting": {
           "enabled": true
         }}'>
-        
         <thead>
           <tr>
-            <th data-breakpoints="xs">ID XE</th>
-            <th>ID Custumer</th>
-            <th>Email</th>  
-            <th data-breakpoints="xs">TIỀN TRẢ TRƯỚC</th>  
-            <th data-breakpoints="xs">NGÀY THUÊ</th>       
-            <th data-breakpoints="xs">NGÀY TRẢ</th>
-            <th>TỔNG NGÀY</th>
-            <th>ẢNH XE</th>
-            <th>TÊN XE</th>
-            <th>TỔNG TIỀN</th>          
-            <th>CẬP NHẬP</th>             
+            <th data-breakpoints="xs">ID</th>
+            <th>LOẠI XE</th>
+            <th>CẬP NHẬP</th>
+            <th>XÓA</th>
           </tr>
         </thead>
-        <c:forEach items="${listContractday}" var="contractday">
+        <c:forEach items="${listspecies}" var="species">
         <tbody>
           <tr>
-           <td>${contractday.id_car}</td>          
-            <td>${contractday.custumerid}</td>
-            <td>${contractday.email}</td>  
-            <td>${contractday.deposit}</td>
-            <td>${contractday.dayhire}</td>          
-            <td>${contractday.payday}</td>
-            <td>${contractday.totalday}</td>
-            <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
-            <td>${contractday.nameCar}</td> 
-            <td>${contractday.totalMoney}</td>                    
-             <td>            
-             	<form action="deliveryContractday" method="get">
-             			<input type="hidden" value="${contractday.speContractid}" name="speContractid"> 
-             			<input class="btn btn-primary" type="submit" value="CẬP NHẬP">
-             	</form>        	         
-             </td>                  
+            <td>${species.speciesId}</td>
+            <td>${species.nameSpecies}</td>         
+             <td><a href="updateSpeciesManager?id_species=${species.speciesId}">Update</a></td>  
+            <td><a href="deleteSpeciesManager?id_species=${species.speciesId}">Delete</a></td>  
           </tr>
         </tbody>
         </c:forEach>
-
       </table>
-      <a href="${pageContext.request.contextPath}/homeStaffDelivery">Cancel</a>
+      <a href="${pageContext.request.contextPath}/homeStaffManage">Cancel</a>
     </div>
   </div>
 </div>
@@ -98,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <!-- footer -->
 		  <div class="footer">
 			<div class="wthree-copyright">
-			  <p>© DANANG <a href="https://www.facebook.com/chamhoilon">DUYNGUYEN</a></p>
+			  <p>©ĐÀ NẴNG VIỆT NAM </p>
 			</div>
 		  </div>
   <!-- / footer -->
@@ -106,6 +79,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!--main content end-->
 </section>
-
 </body>
 </html>

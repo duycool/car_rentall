@@ -133,7 +133,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          <li><a href="${pageContext.request.contextPath}/listcontractdayApproved?status=delivery">ĐANG GIAO</a></li>
                          <li><a href="${pageContext.request.contextPath}/listcontractdayApproved?status=delivered">ĐÃ GIAO</a></li>  
                          <li><a href="${pageContext.request.contextPath}/listcontractdayApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>
-                         <li><a href="${pageContext.request.contextPath}/listcontracthour">QUÁ HẠN</a></li>                      
+                         <li><a href="${pageContext.request.contextPath}/listcontractdaytorankAdmin">ĐẾN HẠN</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayOutAdmin">QUÁ HẠN</a></li>                       
                     </ul>
                 </li>
                   <li class="sub-menu">
@@ -146,7 +147,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=Approved">ĐÃ DUYỆT</a></li>
                          <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivery">ĐANG GIAO</a></li>    
                          <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivered">ĐÃ GIAO</a></li>   
-                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>                
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>    
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourtorankAdmin">ĐẾN HẠN</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourOutAdmin">QUÁ HẠN</a></li>                                   
                     </ul>
                 </li>                    
                  <li class="sub-menu">
@@ -167,7 +170,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="sub">                       
                          <li><a href="${pageContext.request.contextPath}/viewpromotionAdmin">Danh sách xe giảm giá</a></li>            
                     </ul>
-                </li>                               
+                </li>  
+                        <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-bullhorn"></i>
+                        <span>DANH SÁCH KHÁCH HÀNG VI PHẠM HỢP ĐỒNG</span>
+                    </a>
+                    <ul class="sub">                       
+                         <li><a href="${pageContext.request.contextPath}/listcontractViolateAdmin">DANH SÁCH VI PHẠM HỢP ĐỒNG</a></li>            
+                    </ul>
+                </li>                              
             </ul>      
            </div>
     </div>

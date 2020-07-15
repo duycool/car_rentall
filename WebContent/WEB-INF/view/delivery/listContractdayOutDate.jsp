@@ -81,11 +81,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td>${contractday.nameCar}</td> 
             <td>${contractday.totalMoney}</td>   
             <td>${contractday.status}</td>         
-            <td>
-            <form action="deliveryContractday" method="get">
-             			<input type="hidden" value="${contractday.speContractid}" name="speContractid"> 
-             			<input class="btn btn-primary" type="submit" value="CẬP NHẬP">
-            </form>  
+            <td>                    
+             	<form action="deliveryContractday" method="post">
+             			<input type="hidden" value="${contractdayy.speContractid}" name="speContractid"> 
+             		<table border="0" width="35%" align="center">                        
+           		<tr>
+            	 <td width="50%">ĐÃTRẢ: </td>
+                <td><input  type="radio" name="status" value="AlreadyPaid"></td>
+           	 	</tr>             
+           		 <tr>
+                <td colspan="2" align="center"><input  class="btn btn-primary" type="submit" value="submit"/></td>
+            	</tr>
+        		</table>           
+             	</form>        	                 
             <a href="addViolateDelivery?carid=${contractday.id_car}&custumerid=${contractday.custumerid}">Add Vi Phạm</a></td>                        
           </tr>
         </tbody>

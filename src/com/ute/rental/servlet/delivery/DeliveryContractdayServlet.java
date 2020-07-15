@@ -52,7 +52,8 @@ public class DeliveryContractdayServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		int speContractid = (int) session.getAttribute("speContractid");
+		//int speContractid = (int) session.getAttribute("speContractid");
+		int speContractid = Integer.parseInt(request.getParameter("speContractid"));
 		Staff staff = (Staff) session.getAttribute("staff");
 		int staffid = staff.getStaffid();
 		String status = request.getParameter("status");

@@ -218,6 +218,69 @@ public class PromotionDetailsDAO {
 		}
 		return lisIdcar;		
 	}
+	
+	
+	public ArrayList<Promotion> ListCarPromotion (int id) {
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		String sql = "exec SearchCarByIdPromotion'"+id+"'";	
+		ArrayList<Promotion> promotion = new ArrayList<Promotion>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				promotion.add(CovertopromotionJoin(resultSet));				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			if(resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			
+		}
+		return promotion;		
+	}
+	private Promotion CovertopromotionJoin(ResultSet rs) throws SQLException {
+		Promotion car = new Promotion();
+		car.setId_car(rs.getInt(1));
+		car.setSpeciesID(rs.getInt(2));
+		car.setManufacID(rs.getInt(3));
+		car.setNameCar(rs.getString(4));
+		car.setQuantity(rs.getInt(5));
+		car.setStill_exist(rs.getInt(6));
+		car.setAvatar(rs.getString(7));
+		car.setAvatar_sv(rs.getString(8));
+		car.setPrice(rs.getInt(9));
+		car.setPricehour(rs.getInt(10));
+		car.setStatus(rs.getString(11));
+		car.setColor(rs.getString(12));
+		car.setOunce(rs.getString(13));
+		car.setChassisnumber(rs.getString(14));
+		car.setSeatnumber(rs.getString(15));
+		return car;
+	}
+
 	private Car Covertocar(ResultSet rs) throws SQLException {		
 		PromotionDetails prodetails = new PromotionDetails();
 		prodetails.setIdpromotion(rs.getInt(1));
@@ -263,8 +326,8 @@ public class PromotionDetailsDAO {
 	
 	public static void main(String[] args) {
 		PromotionDetailsDAO dao = new PromotionDetailsDAO();
-		ArrayList<PromotionDetails> listdetails = dao.getAllPromotionDetails();
-		for(PromotionDetails proDetails : listdetails) {
+		ArrayList<Promotion> listdetails = dao.ListCarPromotion(2);
+		for(Promotion proDetails : listdetails) {
 			System.out.println("   " +  proDetails.getIdpromotion()+ " " + proDetails.getId_car() );
 		}
 	}

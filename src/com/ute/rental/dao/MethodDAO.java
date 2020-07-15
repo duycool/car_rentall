@@ -275,6 +275,16 @@ public class MethodDAO {
 		}
 		return listCheck;	
 	}
+	
+	public static ContractHour ContracthouParse(ContractHour contractHour){		
+	contractHour.setDayhire(MethodDAO.ParseDateInDatabase(contractHour.getDayhire()));
+	contractHour.setTimehire(MethodDAO.ParseTimeInDatabase(contractHour.getTimehire()));
+	contractHour.setPaytime(MethodDAO.ParseTimeInDatabase(contractHour.getPaytime()));
+	contractHour.setTotaltime(MethodDAO.ParseTimeInDatabase(contractHour.getTotaltime()));
+	contractHour.setStatus(MethodDAO.ParseStatusContract(contractHour.getStatus()));
+	contractHour.setNameSpecies(MethodDAO.ParseNameSpeciesContract(contractHour.getNameSpecies()));
+	return contractHour;	
+	}
 	public static String ParseStatusContract(String status) {
 		if(status.equals("newRent")) {
 			return "Đang Chờ";
@@ -297,6 +307,20 @@ public class MethodDAO {
 			listCheck.add(contractday);
 		}
 		return listCheck;	
+	}
+	public static Contractday ContractdayParse(Contractday contractday){	
+		contractday.setDayhire(MethodDAO.ParseDateInDatabase(contractday.getDayhire()));
+		contractday.setPayday(MethodDAO.ParseDateInDatabase(contractday.getPayday()));
+		contractday.setStatus(MethodDAO.ParseStatusContract(contractday.getStatus()));
+		contractday.setNameSpecies(MethodDAO.ParseNameSpeciesContract(contractday.getNameSpecies()));	
+		return contractday;	
+	}
+	private static String ParseNameSpeciesContract(String species) {
+		if(species.equals("ContractDAY")) {
+			return "Hợp Đồng Thuê Theo Ngày";
+		}else {
+			return "Hợp Đồng Thuê Theo Giờ";
+		}
 	}
 	public static ArrayList<Contractday> listContractdayTorankParse(ArrayList<Contractday> lisContractday){
 		ArrayList<Contractday> listCheck = new ArrayList<Contractday>();

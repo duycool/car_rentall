@@ -56,10 +56,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th data-breakpoints="xs">SỐ HIỆN CÒN</th>       
             <th data-breakpoints="xs">ẢNH</th>
             <th>GIÁ THEO NGÀY</th>
-            <th>GIÁ THEO GIỜ</th>       
-            <th>CẬP NHẬP</th>
+            <th>GIÁ THEO GIỜ</th>               
             <th>SỐ CHỖ</th>    
-            <th>CẬP NHẬT</th>      
+            <th>TÁC VỤ</th>      
           </tr>
         </thead>
         <c:forEach items="${listcar}" var="car">
@@ -76,9 +75,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td>${car.pricehour}</td>      
             <td>${car.seatnumber}</td>   
              <td>
-             	<a href="deleteCar?id_car=${car.id_car}">Delete</a> <br> 
-             	<a href="listCarIdAdmin?id_car=${car.id_car}">MORE</a>  
-             	<a href="addPromotion?id_car=${car.id_car}">Add Promotion</a> 
+             	<a  class="btn-primary primary" href="deleteCar?id_car=${car.id_car}">Delete</a> <br> 
+             	<a class="btn-primary primary"  href="listCarIdAdmin?id_car=${car.id_car}">MORE</a>  <br>
+             	<a  class="btn-primary primary"  href="addPromotion?id_car=${car.id_car}">AddPromotion</a> 
              </td>                  
           </tr>
         </tbody>
