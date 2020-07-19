@@ -30,13 +30,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/templ/headerManage.jsp"></jsp:include>
-	
 <section id="main-content">
 	<section class="wrapper">
 		<div class="table-agile-info">
-	 <div class="panel panel-default">
+ <div class="panel panel-default">
     <div class="panel-heading">
-    		DANH SÁCH KHANH HÀNG VI PHẠM HỢP ĐỒNG
+    	Hợp Đồng Thuê Theo Ngày
     </div>
                          	<p align="center" style="color: red;"><%= request.getAttribute("message") != null ? request.getAttribute("message") : " " %></p> 
     <div>
@@ -55,21 +54,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <tr>
             <th data-breakpoints="xs">ID XE</th>
             <th>ID Custumer</th>
-            <th>TÊN KHÁCH HÀNG VI PHẠM</th>  
-            <th data-breakpoints="xs">TIỀN PHẠT</th>  
-            <th data-breakpoints="xs">LÝ DO VI PHẠM</th>                  
+            <th>Email</th>  
+            <th data-breakpoints="xs">TIỀN TRẢ TRƯỚC</th>  
+            <th data-breakpoints="xs">GIỜ THUÊ</th>       
+            <th data-breakpoints="xs">GIỜ TRẢ</th>
+            <th>TỔNG GIỜ THUÊ</th>
+            <th>ẢNH XE</th>
+            <th>TÊN XE</th>
+            <th>TỔNG TIỀN</th>       
             <th>TÁC VỤ</th>             
           </tr>
         </thead>
-        <c:forEach items="${lisViolate}" var="violate">
+        <c:forEach items="${listcontracthour}" var="contracthour">
         <tbody>
           <tr>
-           <td>${violate.id_car}</td>          
-            <td>${violate.custumerid}</td>
-            <td>${violate.nameViolate}</td>  
-            <td>${violate.priceViolate}</td>
-            <td>${violate.reason}</td>                  
-            <td><a class="printfBillViolateManager">IN PHIẾU PHẠT</a></td>                                       
+         	 <td>${contracthour.id_car}</td>          
+            <td>${contracthour.custumerid}</td>
+            <td>${contracthour.email}</td>  
+            <td>${contracthour.deposit}</td>
+            <td>${contracthour.timehire}</td>          
+            <td>${contracthour.paytime}</td>
+            <td>${contracthour.totaltime}</td>
+            <td><img src="images/${contracthour.avatar}" width="170px" height="220px"/></td>
+            <td>${contracthour.nameCar}</td> 
+            <td>${contracthour.totalMoney}</td>             
+             <td>            
+             	<a href="printBillhourManager?contractid=${contracthour.contractid}">InHóaĐơn</a>>   
+             	<a class="btn-primary primary" href="addViolateManager?carid=${contracthour.id_car}&custumerid=${contracthour.custumerid}">AddViPhạm</a>        	         
+             </td>                  
           </tr>
         </tbody>
         </c:forEach>

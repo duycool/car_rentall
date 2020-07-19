@@ -99,6 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="sub">                      
                        		 <li><a href="${pageContext.request.contextPath}/createcar">THÊM XE</a></li>
                     		<li><a href="${pageContext.request.contextPath}/listCaradmin">QUẢN LÝ XE</a></li> 
+                    		<li><a href="${pageContext.request.contextPath}/listCarOutOfStock">DANH SÁCH XE ĐÃ HẾT</a></li>         
                     		<li><a href="${pageContext.request.contextPath}/promotionAdmin">XE VỪA ĐƯỢC THÊM VÀO GIẢM GIÁ</a></li>        	
                     </ul>
                 </li>   
@@ -108,8 +109,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>QUẢN LÝ LOẠI</span>
                     </a>
                     <ul class="sub">
-                      		<li><a href="${pageContext.request.contextPath}/createspecies">Thêm Loại</a></li>                       
-                    		<li><a href="${pageContext.request.contextPath}/listspecies">Tất Cả Lọai</a></li>     		
+                      		<li><a href="${pageContext.request.contextPath}/createspecies">THÊN LOẠI</a></li>                       
+                    		<li><a href="${pageContext.request.contextPath}/listspecies">TẤT CẢ LOẠI</a></li>     		
                     </ul>
                 </li> 
                       <li class="sub-menu">
@@ -118,8 +119,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>QUẢN LÝ HÃNG</span>
                     </a>
                     <ul class="sub">           
-                       		<li><a href="${pageContext.request.contextPath}/createManufact">Thêm Hãng</a></li>
-                    		<li><a href="${pageContext.request.contextPath}/listmanufact">Tất Cả Hãng</a></li>      		
+                       		<li><a href="${pageContext.request.contextPath}/createManufact">THÊM HÃNG</a></li>
+                    		<li><a href="${pageContext.request.contextPath}/listmanufact">TẤT CẢ HÃNG</a></li>      		
                     </ul>
                 </li> 
                  <li class="sub-menu">
@@ -143,7 +144,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>HỢP ĐỒNG THUÊ THEO GIỜ</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/listcontracthour?status=newRent">Mới Thuê</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthour?status=newRent">MỚI THUÊ</a></li>
                          <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=Approved">ĐÃ DUYỆT</a></li>
                          <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivery">ĐANG GIAO</a></li>    
                          <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivered">ĐÃ GIAO</a></li>   
@@ -157,9 +158,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <i class="fa fa-book"></i>
                         <span>DOANH THU CỬA HÀNG</span>
                     </a>
-                    <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/sumtotal?status=CurrentlyHiring">Thu nhập ước tính</a></li>
-                        <li><a href="${pageContext.request.contextPath}/sumtotal?status=AlreadyPaid">Thu nhập đạt được</a></li>            
+                    <ul class="sub">                   
+                        <li><a href="${pageContext.request.contextPath}/sumtotalMoney">THU NHẬP ĐÃ ĐẠT ĐƯỢC TRONG THÁNG</a></li>            
                     </ul>
                 </li> 
                       <li class="sub-menu">
@@ -168,7 +168,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>GIẢM GIÁ</span>
                     </a>
                     <ul class="sub">                       
-                         <li><a href="${pageContext.request.contextPath}/viewpromotionAdmin">Danh sách xe giảm giá</a></li>            
+                         <li><a href="${pageContext.request.contextPath}/viewpromotionAdmin">DANH SÁCH XE GIẢM GIÁ</a></li>            
                     </ul>
                 </li>  
                         <li class="sub-menu">

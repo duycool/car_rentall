@@ -53,6 +53,47 @@ public class CarDAO {
 		return listcar;	
 	}
 	
+	public ArrayList<Car> getAllCarOutOfStock(){
+		Connection  connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		ArrayList<Car> listcar = new ArrayList<Car>();
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("exec listCarOutOfStock");
+			while(resultset.next()) {
+				listcar.add(convertoCar(resultset));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(resultset != null) {
+				try {
+					resultset.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return listcar;	
+	}
 	public ArrayList<Car> getAllCarId(int idcar){
 		Connection  connection = null;
 		Statement statement = null;

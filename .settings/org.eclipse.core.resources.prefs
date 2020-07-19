@@ -23,6 +23,12 @@ encoding//src/com/ute/rental/servlet/delivery/ListcontracthourDeliveryServlet.ja
 encoding//src/com/ute/rental/servlet/delivery/ListcontracthourOuthourDeliveryServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/delivery/ListcontracthourTorankDeliveryServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/manager/AddPromotionManagerServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/manager/ListcontractdayOutManagerServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/manager/ListcontractdaytorankManagerServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/manager/ListcontracthourOutManagerServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/manager/ListcontracthourtorankManagerServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/manager/UpdateContractdayManagerServlet.java=UTF-8
+encoding//src/com/ute/rental/servlet/manager/UpdateContracthourManagerServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/manager/ViewpromotionManagerServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/user/ChangePassUserServlet.java=UTF-8
 encoding//src/com/ute/rental/servlet/user/CommentServlet.java=UTF-8

@@ -94,6 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <ul class="sub">                      
                        		<li><a href="${pageContext.request.contextPath}/createcarManager">THÊM XE</a></li>
                     		<li><a href="${pageContext.request.contextPath}/listCarManager">QUẢN LÝ XE</a></li>   
+                    		<li><a href="${pageContext.request.contextPath}/listCarOutOfStockManager">DANH SÁCH XE ĐÃ HẾT</a></li>
                     		<li><a href="${pageContext.request.contextPath}/promotionManager">XE VỪA ĐƯỢC THÊM VÀO GIẢM GIÁ</a></li>           	
                     </ul>
                 </li>   
@@ -128,8 +129,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                          <li><a href="${pageContext.request.contextPath}/listcontractdayManagerApproved?status=delivery">ĐANG GIAO</a></li>
                          <li><a href="${pageContext.request.contextPath}/listcontractdayManagerApproved?status=delivered">ĐÃ GIAO</a></li>  
                          <li><a href="${pageContext.request.contextPath}/listcontractdayManagerApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>
-                         <li><a href="${pageContext.request.contextPath}/listcontractdaytorankAdmin">ĐẾN HẠN</a></li>   
-                         <li><a href="${pageContext.request.contextPath}/listcontractdayOutAdmin">QUÁ HẠN</a></li>                        
+                         <li><a href="${pageContext.request.contextPath}/listcontractdaytorankManager">ĐẾN HẠN</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontractdayOutManager">QUÁ HẠN</a></li>                        
                     </ul>
                 </li>
                   <li class="sub-menu">
@@ -138,13 +139,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>HỢP ĐỒNG THUÊ THEO GIỜ</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/listcontracthour?status=newRent">Mới Thuê</a></li>
-                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=Approved">ĐÃ DUYỆT</a></li>
-                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivery">ĐANG GIAO</a></li>    
-                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=delivered">ĐÃ GIAO</a></li>   
-                         <li><a href="${pageContext.request.contextPath}/listcontracthourApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>    
-                         <li><a href="${pageContext.request.contextPath}/listcontracthourtorankAdmin">ĐẾN HẠN</a></li>   
-                         <li><a href="${pageContext.request.contextPath}/listcontracthourOutAdmin">QUÁ HẠN</a></li>                                   
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourManager?status=newRent">Mới Thuê</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourManagerApproved?status=Approved">ĐÃ DUYỆT</a></li>
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourManagerApproved?status=delivery">ĐANG GIAO</a></li>    
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourManagerApproved?status=delivered">ĐÃ GIAO</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourManagerApproved?status=AlreadyPaid">ĐÃ TRÃ</a></li>    
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourtorankManager">ĐẾN HẠN</a></li>   
+                         <li><a href="${pageContext.request.contextPath}/listcontracthourOutManager">QUÁ HẠN</a></li>                                   
                     </ul>
                 </li>                    
                  <li class="sub-menu">
@@ -153,8 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>DOANH THU CỬA HÀNG</span>
                     </a>
                     <ul class="sub">
-                         <li><a href="${pageContext.request.contextPath}/sumtotal?status=CurrentlyHiring">Thu nhập ước tính</a></li>
-                        <li><a href="${pageContext.request.contextPath}/sumtotal?status=AlreadyPaid">Thu nhập đạt được</a></li>            
+                                 <li><a href="${pageContext.request.contextPath}/sumtotalMoneyManager">THU NHẬP ĐÃ ĐẠT ĐƯỢC TRONG THÁNG</a></li>   
                     </ul>
                 </li> 
                       <li class="sub-menu">

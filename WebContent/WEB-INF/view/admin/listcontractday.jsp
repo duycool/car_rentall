@@ -92,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   			</div>  			
            	</td>             
              <td>            
-             	<a href="contractdayPDF?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         
+             	<a href="printBillday?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         
              </td>                  
           </tr>
         </tbody>

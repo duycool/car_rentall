@@ -1,4 +1,4 @@
-package com.ute.rental.servlet.admin;
+package com.ute.rental.servlet.manager;
 
 import java.io.IOException;
 
@@ -23,10 +23,10 @@ import com.ute.rental.dao.MethodDAO;
 import com.ute.rental.dao.StaffDAO;
 
 /**
- * Servlet implementation class UpdateContracthourServlet
+ * Servlet implementation class UpdateContracthourManagerServlet
  */
-@WebServlet(name = "updateContracthour", urlPatterns = { "/updateContracthour" })
-public class UpdateContracthourServlet extends HttpServlet {
+@WebServlet(name = "updateContracthourManager", urlPatterns = { "/updateContracthourManager" })
+public class UpdateContracthourManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String host;
 	private String port;
@@ -43,7 +43,7 @@ public class UpdateContracthourServlet extends HttpServlet {
 		user = context.getInitParameter("user");
 		pass = context.getInitParameter("pass");
 	}
-    public UpdateContracthourServlet() {
+    public UpdateContracthourManagerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -94,12 +94,13 @@ public class UpdateContracthourServlet extends HttpServlet {
 			} finally {
 				response.setContentType("text/html;charset=UTF-8");
 				request.setCharacterEncoding("UTF-8");
-				response.sendRedirect(request.getContextPath() + "/listcontracthour");
+				response.sendRedirect(request.getContextPath() + "/listcontracthourManager");
 			}			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	/**

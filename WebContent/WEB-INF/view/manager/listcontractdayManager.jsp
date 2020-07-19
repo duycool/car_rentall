@@ -86,13 +86,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    			 </button> 	   			  
     		<div class="dropdown-menu">
     		<c:forEach items="${lisStaff}" var="staff"> 
-     		 <a class="dropdown-item" href="${pageContext.request.contextPath}/updateContractday?idcontract=${contractday.contractid}&staff=${staff.staffid}">${staff.fullname}</a>    		
+     		 <a class="dropdown-item" href="${pageContext.request.contextPath}/updateContractdayManager?idcontract=${contractday.contractid}&staff=${staff.staffid}">${staff.fullname}</a>    		
     		</c:forEach>
     		</div>    		
   			</div>  			
            	</td>             
              <td>            
-             	<a href="contractdayPDF?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         
+             	<a href="printBilldayManager?contractid=${contractday.contractid}">IN HÓA ĐƠN</a>          	         
              </td>                  
           </tr>
         </tbody>

@@ -12,6 +12,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,6 +25,7 @@ import java.util.ArrayList;
 import org.eclipse.jdt.internal.compiler.batch.Main;
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.ute.rental.bo.Bill;
 import com.ute.rental.bo.Contract;
 import com.ute.rental.bo.ContractDelivery;
 import com.ute.rental.bo.ContractHour;
@@ -29,6 +34,7 @@ import com.ute.rental.bo.Promotion;
 import com.ute.rental.bo.PromotionDetails;
 import com.ute.rental.bo.SpeciesCar;
 import com.ute.rental.bo.Staff;
+import com.ute.rental.dbconnection.ConnectionFactory;
 
 
 public class MethodDAO {
@@ -349,9 +355,61 @@ public class MethodDAO {
 //		}
 //		return false;
 //	}
+	public static Bill getAllTotalMoney(){
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultset = null;
+		String [] date = MethodDAO.Ngayhientai().split("-");
+		
+		int nam = Integer.parseInt(date[0]);
+		int thang = Integer.parseInt(date[1]);
+		try {
+			connection = ConnectionFactory.getConnection();
+			statement = connection.createStatement();
+			resultset = statement.executeQuery("select dbo.Incomeforthemonth('"+thang+"','"+nam+"')");
+			while(resultset.next()) {
+				Bill bill = Covertototal(resultset);
+				return bill;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if(statement != null) {
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(resultset != null) {
+			try {
+				resultset.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		}
+		return null;
+	}
 
+	private static Bill Covertototal(ResultSet rs) throws SQLException {
+		Bill bill = new Bill();
+		bill.setTotalMoney(rs.getInt(1));
+		return bill;
+	}
 	public static void main(String[] args) throws ParseException  {		
-	
+		MethodDAO dao = new MethodDAO();
+		Bill bill = dao.getAllTotalMoney();
+		System.out.println(bill.getTotalMoney());
 	}
 	
 }

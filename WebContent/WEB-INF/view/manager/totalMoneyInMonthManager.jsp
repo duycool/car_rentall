@@ -30,13 +30,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 	<jsp:include page="/WEB-INF/view/templ/headerManage.jsp"></jsp:include>
-	
 <section id="main-content">
 	<section class="wrapper">
 		<div class="table-agile-info">
-	 <div class="panel panel-default">
+ <div class="panel panel-default">
     <div class="panel-heading">
-    		DANH SÁCH KHANH HÀNG VI PHẠM HỢP ĐỒNG
+    	Tổng Thu Nhập Trong Tháng
     </div>
                          	<p align="center" style="color: red;"><%= request.getAttribute("message") != null ? request.getAttribute("message") : " " %></p> 
     <div>
@@ -49,31 +48,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         },
         "sorting": {
           "enabled": true
-        }}'>
+        }}' >
         
         <thead>
           <tr>
-            <th data-breakpoints="xs">ID XE</th>
-            <th>ID Custumer</th>
-            <th>TÊN KHÁCH HÀNG VI PHẠM</th>  
-            <th data-breakpoints="xs">TIỀN PHẠT</th>  
-            <th data-breakpoints="xs">LÝ DO VI PHẠM</th>                  
-            <th>TÁC VỤ</th>             
+            <th data-breakpoints="xs" ><p style="margin-left: 300px;">Tổng Tiền Thu Nhập Trong Tháng : ${bill.totalMoney} VNĐ</p></th>
+                     
           </tr>
-        </thead>
-        <c:forEach items="${lisViolate}" var="violate">
-        <tbody>
-          <tr>
-           <td>${violate.id_car}</td>          
-            <td>${violate.custumerid}</td>
-            <td>${violate.nameViolate}</td>  
-            <td>${violate.priceViolate}</td>
-            <td>${violate.reason}</td>                  
-            <td><a class="printfBillViolateManager">IN PHIẾU PHẠT</a></td>                                       
-          </tr>
-        </tbody>
-        </c:forEach>
-
+        </thead>           
       </table>
       <a href="${pageContext.request.contextPath}/homeStaffManage">Cancel</a>
     </div>

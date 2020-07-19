@@ -36,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="table-agile-info">
 	 <div class="panel panel-default">
     <div class="panel-heading">
-    		DANH SÁCH KHANH HÀNG VI PHẠM HỢP ĐỒNG
+    	<%= request.getAttribute("title") != null ? request.getAttribute("title") : " " %>
     </div>
                          	<p align="center" style="color: red;"><%= request.getAttribute("message") != null ? request.getAttribute("message") : " " %></p> 
     <div>
@@ -55,21 +55,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
           <tr>
             <th data-breakpoints="xs">ID XE</th>
             <th>ID Custumer</th>
-            <th>TÊN KHÁCH HÀNG VI PHẠM</th>  
-            <th data-breakpoints="xs">TIỀN PHẠT</th>  
-            <th data-breakpoints="xs">LÝ DO VI PHẠM</th>                  
-            <th>TÁC VỤ</th>             
+            <th>Email</th>  
+            <th data-breakpoints="xs">TIỀN TRẢ TRƯỚC</th>  
+            <th data-breakpoints="xs">NGÀY THUÊ</th>       
+            <th data-breakpoints="xs">NGÀY TRẢ</th>
+            <th>TỔNG NGÀY</th>
+            <th>ẢNH XE</th>
+            <th>TÊN XE</th>            
+            <th>TỔNG TIỀN</th>   
+            <th>TRẠNG THÁI</th>     
+            <th>TÁC VỤ</th>                      
           </tr>
         </thead>
-        <c:forEach items="${lisViolate}" var="violate">
+        <c:forEach items="${listContractday}" var="contractday">
         <tbody>
           <tr>
-           <td>${violate.id_car}</td>          
-            <td>${violate.custumerid}</td>
-            <td>${violate.nameViolate}</td>  
-            <td>${violate.priceViolate}</td>
-            <td>${violate.reason}</td>                  
-            <td><a class="printfBillViolateManager">IN PHIẾU PHẠT</a></td>                                       
+           <td>${contractday.id_car}</td>          
+            <td>${contractday.custumerid}</td>
+            <td>${contractday.email}</td>  
+            <td>${contractday.deposit}</td>
+            <td>${contractday.dayhire}</td>          
+            <td>${contractday.payday}</td>
+            <td>${contractday.totalday}</td>
+            <td><img src="images/${contractday.avatar}" width="170px" height="220px"/></td>
+            <td>${contractday.nameCar}</td> 
+            <td>${contractday.totalMoney}</td>   
+            <td>${contractday.status}</td>         
+            <td>                    
+             	<a class="btn-primary primary" href="addViolateManager?carid=${contractday.id_car}&custumerid=${contractday.custumerid}">AddViPhạm</a>                        
           </tr>
         </tbody>
         </c:forEach>

@@ -69,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td>${violate.nameViolate}</td>  
             <td>${violate.priceViolate}</td>
             <td>${violate.reason}</td>                  
-            <td><a class="">IN PHIẾU PHẠT</a></td>                                       
+            <td><a href="printBillViolate?idviolet=${violate.idviolate}">IN PHIẾU PHẠT</a></td>                                       
           </tr>
         </tbody>
         </c:forEach>

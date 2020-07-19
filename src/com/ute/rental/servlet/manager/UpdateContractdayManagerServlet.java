@@ -1,4 +1,4 @@
-package com.ute.rental.servlet.admin;
+package com.ute.rental.servlet.manager;
 
 import java.io.IOException;
 
@@ -11,23 +11,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ute.rental.bo.Car;
 import com.ute.rental.bo.Contract;
-import com.ute.rental.bo.ContractHour;
+import com.ute.rental.bo.Contractday;
 import com.ute.rental.bo.Custumer;
 import com.ute.rental.bo.Staff;
 import com.ute.rental.dao.CarDAO;
 import com.ute.rental.dao.ContractDAO;
-import com.ute.rental.dao.ContractHourDAO;
+import com.ute.rental.dao.ContractDayDAO;
 import com.ute.rental.dao.CustumerDAO;
 import com.ute.rental.dao.EmailUtility;
 import com.ute.rental.dao.MethodDAO;
 import com.ute.rental.dao.StaffDAO;
 
 /**
- * Servlet implementation class UpdateContracthourServlet
+ * Servlet implementation class UpdateContractdayManagerServlet
  */
-@WebServlet(name = "updateContracthour", urlPatterns = { "/updateContracthour" })
-public class UpdateContracthourServlet extends HttpServlet {
+@WebServlet(name = "updateContractdayManager", urlPatterns = { "/updateContractdayManager" })
+public class UpdateContractdayManagerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	private String host;
 	private String port;
 	private String user;
@@ -43,7 +44,7 @@ public class UpdateContracthourServlet extends HttpServlet {
 		user = context.getInitParameter("user");
 		pass = context.getInitParameter("pass");
 	}
-    public UpdateContracthourServlet() {
+    public UpdateContractdayManagerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -58,17 +59,17 @@ public class UpdateContracthourServlet extends HttpServlet {
 		int idcontract = Integer.parseInt(request.getParameter("idcontract"));
 		String status = "Approved";
 		
-		ContractHour contractHour = new ContractHour();
-		contractHour.setStaffid(staffid);
-		contractHour.setContractid(idcontract);	
-		contractHour.setStatus(status);
-		ContractHourDAO contractHourDAO = new ContractHourDAO();
+		Contractday contractday = new Contractday();
+		contractday.setStaffid(staffid);
+		contractday.setContractid(idcontract);	
+		contractday.setStatus(status);
+		ContractDayDAO contractDayDAO = new ContractDayDAO();
 		CustumerDAO custumerDAO = new CustumerDAO();
 		StaffDAO staffDAO = new StaffDAO();
 		CarDAO carDAO = new  CarDAO();
 		ContractDAO contractDAO = new ContractDAO();
 		
-		ContractHour contractHour1 = contractHourDAO.getContractHour(idcontract);
+		Contractday contractday1 = contractDayDAO.getContractDay(idcontract);
 		Contract contract = contractDAO.getContract(idcontract);
 		Custumer custumer = custumerDAO.getCustumerByCustumerid(contract.getCustumerid());
 		Staff staff = staffDAO.getStaffByidStaff(staffid);
@@ -78,11 +79,11 @@ public class UpdateContracthourServlet extends HttpServlet {
 
 		try {			
 			String subject = "Notification !";
-			String contentStaff = "Giao Xe vào Ngày Dự Kiến Là'"+MethodDAO.ParseDateInDatabase(contractHour1.getDayhire())+"' Vui lòng Thực Hiện Đúng yêu cầu của cửa hàng";
-			String contentCustumer = "Xe '"+car.getNameCar()+"' bạn thuê  Vào Ngày '"+MethodDAO.ParseDateInDatabase(contractHour1.getDayhire())+"' Đã Được Duyệt"
+			String contentStaff = "Giao Xe vào Ngày Dự Kiến Là'"+MethodDAO.ParseDateInDatabase(contractday1.getDayhire())+"' Vui lòng Thực Hiện Đúng yêu cầu của cửa hàng";
+			String contentCustumer = "Xe '"+car.getNameCar()+"' bạn thuê  Vào Ngày '"+MethodDAO.ParseDateInDatabase(contractday1.getDayhire())+"' Đã Được Duyệt"
 					+ "	Vui lòng đợi ngày nhận xe";
 			
-			contractHourDAO.UpdateStatusContracthour(contractHour);
+			contractDayDAO.UpdateStatusContract(contractday);
 			
 			try {
 				EmailUtility.sendEmail(host, port, user, pass, emailStaff, subject,
@@ -94,7 +95,7 @@ public class UpdateContracthourServlet extends HttpServlet {
 			} finally {
 				response.setContentType("text/html;charset=UTF-8");
 				request.setCharacterEncoding("UTF-8");
-				response.sendRedirect(request.getContextPath() + "/listcontracthour");
+				response.sendRedirect(request.getContextPath() + "/listcontractdayManager");
 			}			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

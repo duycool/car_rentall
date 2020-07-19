@@ -52,14 +52,129 @@ public class ContractHourServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		int custumerid = (int) session.getAttribute("custumerid");
 		
-		ContractDAO dao = new ContractDAO();
-		ArrayList<Contract> listContractCustumer = dao.getContractCustumer(custumerid);
 		
-//		ContractDayDAO contractDayDAO = new ContractDayDAO();
-		ArrayList<Contract> lisContract = dao.getAllContract();	
+		CarDAO carDAO = new CarDAO();
+		Car checkCar = carDAO.getCar(id_car);
 		
-		if(MethodDAO.checkStatusContract(listContractCustumer,lisContract)) {
-			String message = "Hiện bạn đang thuê hoặc chưa trả xe nên không thể tạo hợp đồng !";
+		if(checkCar.getStill_exist() > 0) {
+			ContractDAO dao = new ContractDAO();
+			ArrayList<Contract> listContractCustumer = dao.getContractCustumer(custumerid);
+			
+//			ContractDayDAO contractDayDAO = new ContractDayDAO();
+			ArrayList<Contract> lisContract = dao.getAllContract();	
+			
+			if(MethodDAO.checkStatusContract(listContractCustumer,lisContract)) {
+				String message = "Hiện bạn đang thuê hoặc chưa trả xe nên không thể tạo hợp đồng !";
+				request.setAttribute("message", message);
+				response.setContentType("text/html;charset=UTF-8");
+				request.setCharacterEncoding("UTF-8");
+				//String idStr = request.getParameter("id_car");				
+				session.setAttribute("id_car", id_car);				
+				PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
+				PromotionDAO proDao = new PromotionDAO();				
+				ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
+				String name = "Giảm Giá : ";
+				String vnd = "VNÐ";
+				String giatheongay = "Giá Theo Ngày ||  ";
+				String giatheogio = "Giá Theo Giờ || ";
+				MethodDAO methodDAO = new MethodDAO();
+				for(PromotionDetails details : lisPromotionDetails) {
+					if(details.getId_car() == id_car) {
+						Promotion promotion = proDao.getPromotion(details.getIdpromotion());
+						request.setAttribute("promotion", promotion);
+						String giabandau = "Giá Ban Ðầu : ";
+						String giagiam = "Giá Sau Khi Giảm : ";
+						String vndsale = "VNÐ";
+						String giatheongaysale = "Giá Theo Ngày : ";
+						String giatheogiosale = "Giá Theo Giờ : ";
+																		
+						request.setAttribute("name", name);
+						session.setAttribute("id_car", id_car);
+						CarDAO cardao = new CarDAO();
+						Car car = cardao.getCar(id_car);
+						request.setAttribute("car", car);
+						
+						int price = car.getPrice();
+						int pricehour = car.getPricehour();
+						
+						request.setAttribute("giabandau", giabandau);
+						request.setAttribute("price", price);
+						request.setAttribute("pricehour", pricehour);
+						request.setAttribute("vndsale", vndsale);
+						request.setAttribute("giatheongaysale", giatheongaysale);
+						request.setAttribute("giatheogiosale", giatheogiosale);
+						String title = promotion.getTitile();
+						
+						int priceSaleOff = methodDAO.moneySaleOff(title, price);
+						int pricehourSaleOff = methodDAO.moneySaleOff(title, pricehour);
+						
+						request.setAttribute("giagiam", giagiam);
+						request.setAttribute("priceSaleOff", priceSaleOff);
+						request.setAttribute("pricehourSaleOff", pricehourSaleOff);
+						
+						session.setAttribute("priceSaleOff", priceSaleOff);
+						session.setAttribute("pricehourSaleOff", pricehourSaleOff);
+						
+						
+						
+						CommentDAO cDao = new CommentDAO();
+						ArrayList<Comment> listComment = cDao.getCommentById(id_car);
+						request.setAttribute("listComment", listComment);
+						
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/listCarId.jsp");
+						dispatcher.forward(request, response);
+						return;
+					}
+				}		
+				CarDAO cardao = new CarDAO();
+				Car car = cardao.getCar(id_car);
+				session.setAttribute("quantity", car.getQuantity());
+				request.setAttribute("car", car);
+				int  pricebt = car.getPrice();
+				int  pricehourbt = car.getPricehour();
+				
+				request.setAttribute("vnd", vnd);
+				request.setAttribute("pricebt", pricebt);
+				request.setAttribute("pricehourbt", pricehourbt);
+				request.setAttribute("giatheongay", giatheongay);
+				request.setAttribute("giatheogio", giatheogio);			
+				
+				CommentDAO cDao = new CommentDAO();
+				ArrayList<Comment> listComment = cDao.getCommentById(id_car);
+				request.setAttribute("listComment", listComment);
+				
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/listCarId.jsp");
+				dispatcher.forward(request, response);	
+			}else {
+				CarDAO cardao = new CarDAO();
+				PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
+				PromotionDAO proDao = new PromotionDAO();				
+				ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
+				MethodDAO methodDAO = new MethodDAO();
+				for(PromotionDetails details : lisPromotionDetails) {
+					if(details.getId_car() == id_car) {
+						Promotion promotion = proDao.getPromotion(details.getIdpromotion());
+						Car car = cardao.getCar(id_car);
+						request.setAttribute("car",car);
+						int pricehour = car.getPricehour();				
+						String title = promotion.getTitile();
+						int priceSaleOff = methodDAO.moneySaleOff(title, pricehour);			
+						request.setAttribute("priceSaleOff", priceSaleOff);			
+						
+						RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
+						dispatcher.forward(request, response);
+						return;
+					}
+				}
+				Car car = cardao.getCar(id_car);
+				request.setAttribute("car",car);
+				int pricehour = car.getPricehour();
+				request.setAttribute("pricehour", pricehour);		
+				RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
+				dispatcher.forward(request, response);	
+			}		
+		}else {
+			String message = "Hiện tại xe đã được thuê hết quý khách vui lòng chon xe khác để thuê !";
 			request.setAttribute("message", message);
 			response.setContentType("text/html;charset=UTF-8");
 			request.setCharacterEncoding("UTF-8");
@@ -140,34 +255,8 @@ public class ContractHourServlet extends HttpServlet {
 			
 			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/listCarId.jsp");
 			dispatcher.forward(request, response);	
-		}else {
-			CarDAO cardao = new CarDAO();
-			PromotionDetailsDAO proDetailsDAO = new PromotionDetailsDAO();
-			PromotionDAO proDao = new PromotionDAO();				
-			ArrayList<PromotionDetails> lisPromotionDetails = proDetailsDAO.getAllPromotionDetails();
-			MethodDAO methodDAO = new MethodDAO();
-			for(PromotionDetails details : lisPromotionDetails) {
-				if(details.getId_car() == id_car) {
-					Promotion promotion = proDao.getPromotion(details.getIdpromotion());
-					Car car = cardao.getCar(id_car);
-					request.setAttribute("car",car);
-					int pricehour = car.getPricehour();				
-					String title = promotion.getTitile();
-					int priceSaleOff = methodDAO.moneySaleOff(title, pricehour);			
-					request.setAttribute("priceSaleOff", priceSaleOff);			
-					
-					RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
-					dispatcher.forward(request, response);
-					return;
-				}
-			}
-			Car car = cardao.getCar(id_car);
-			request.setAttribute("car",car);
-			int pricehour = car.getPricehour();
-			request.setAttribute("pricehour", pricehour);		
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/view/user/contracthour.jsp");
-			dispatcher.forward(request, response);	
-		}		
+		}
+		
 	}
 		
 	

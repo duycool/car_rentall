@@ -99,7 +99,7 @@ public class UpdateContractdayServlet extends HttpServlet {
 				} finally {
 					response.setContentType("text/html;charset=UTF-8");
 					request.setCharacterEncoding("UTF-8");
-					response.sendRedirect(request.getContextPath() + "/listcontracthour");
+					response.sendRedirect(request.getContextPath() + "/listcontractday");
 				}			
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
